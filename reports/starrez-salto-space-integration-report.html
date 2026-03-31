@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StarRez to Salto Space Integration Report — Tenant Onboarding &amp; Digital Key Issuance</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Quicksand', Calibri, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #000000;
+    background: #ffffff;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .cover {
+    padding: 20px 0 30px 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  @media print {
+    .cover { page-break-after: always; }
+  }
+  .cover-logo {
+    text-align: right;
+    margin-bottom: 40px;
+  }
+  .cover-logo img { width: 160px; }
+  .cover h1 {
+    font-size: 26pt;
+    font-weight: 700;
+    color: #71BF44;
+    margin-bottom: 12px;
+  }
+  .cover .subtitle {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #555555;
+    margin-bottom: 24px;
+  }
+  .cover .meta {
+    font-size: 10pt;
+    color: #888888;
+    line-height: 1.8;
+  }
+  h1 {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #71BF44;
+    margin: 32px 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #D0E8C5;
+  }
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 28px 0 10px 0;
+  }
+  h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 20px 0 8px 0;
+  }
+  p { margin: 8px 0; }
+  .exec-summary {
+    background: #F2FAF0;
+    border-left: 4px solid #71BF44;
+    padding: 16px 20px;
+    margin: 16px 0 24px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px 0;
+    font-size: 10pt;
+  }
+  thead th {
+    background: #E1E1E1;
+    color: #000000;
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+  }
+  tbody td {
+    padding: 8px 12px;
+    border: 1px solid #dddddd;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: #F2FAF0; }
+  tbody tr:nth-child(odd) { background: #ffffff; }
+  ul, ol { margin: 8px 0 8px 24px; }
+  li { margin: 4px 0; }
+  .step-box {
+    background: #f9f9f9;
+    border: 1px solid #D0E8C5;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .step-box h3 {
+    color: #71BF44;
+    margin-top: 0;
+  }
+  .flow-diagram {
+    background: #fafafa;
+    border: 2px solid #D0E8C5;
+    border-radius: 10px;
+    padding: 24px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .flow-step {
+    display: inline-block;
+    background: #71BF44;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 6px;
+    font-size: 10pt;
+    min-width: 140px;
+  }
+  .flow-arrow {
+    display: inline-block;
+    font-size: 18pt;
+    color: #71BF44;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+  .note-box {
+    background: #fffbe6;
+    border-left: 4px solid #e6c300;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 10pt;
+  }
+  .api-code {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+  }
+  .api-code .keyword { color: #66d9ef; }
+  .api-code .string { color: #a6e22e; }
+  .api-code .comment { color: #75715e; }
+  .section-divider {
+    border: 0;
+    border-top: 1px solid #D0E8C5;
+    margin: 32px 0;
+  }
+  footer {
+    margin-top: 40px;
+    padding: 16px 0;
+    border-top: 1px solid #D0E8C5;
+    font-size: 8pt;
+    color: #999999;
+    display: flex;
+    justify-content: space-between;
+  }
+  a { color: #71BF44; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .badge-green { background: #e8f5e0; color: #2d7a00; }
+  .badge-blue { background: #e0ecf5; color: #004a7a; }
+  .badge-orange { background: #fef3e0; color: #7a4a00; }
+  .badge-red { background: #f5e0e0; color: #7a0000; }
+</style>
+</head>
+<body>
+<!-- MELD DOWNLOAD BAR -->
+<div id="meld-download-bar" style="
+  position: sticky; top: 0; z-index: 9999;
+  background: #71BF44; color: #ffffff;
+  font-family: 'Quicksand', Calibri, sans-serif;
+  font-size: 10pt; font-weight: 600;
+  display: flex; align-items: center;
+  gap: 12px; padding: 8px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+">
+  <a href="https://meldstrategies.github.io/meld-reports/" onclick="if(window.history.length>1){window.history.back();return false;}" target="_top" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;display:flex;align-items:center;gap:6px;">🏠 Reports Home</a>
+  <div style="flex:1;"></div>
+  <span style="opacity: 0.9; font-weight: 400;">Download this report:</span>
+  <a href="https://drive.google.com/file/d/10aUMJaXc8Wqpr-i6ICwLU-ZZyv_y6iT-/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">📄 HTML</a>
+  <a href="https://drive.google.com/file/d/1ybE4Ie3FOorMpr-TVK5hX3kEbLhzogC7/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">⬇ PDF</a>
+</div>
+
+
+<div class="cover">
+  <div class="cover-logo">
+    <img src="data:image/png;base64,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" alt="Meld Strategies">
+  </div>
+  <h1>StarRez to Salto Space Integration</h1>
+  <div class="subtitle">Tenant Onboarding and Digital Key Issuance via JUSTin Mobile</div>
+  <div class="meta">
+    <strong>Prepared for:</strong> Meld Strategies<br>
+    <strong>Date:</strong> 31 March 2026<br>
+    <strong>Prepared by:</strong> Meld Strategies — Smart Building Consulting<br>
+    <strong>Classification:</strong> Internal
+  </div>
+</div>
+
+<h1>Executive Summary</h1>
+<div class="exec-summary">
+  <p>This report examines the integration pathway between <strong>StarRez</strong>, a residential and property management platform, and <strong>Salto Space</strong>, an on-premises access control system, to enable automated tenant onboarding with digital key delivery via the <strong>Salto JUSTin Mobile</strong> app. The integration leverages the StarRez REST API (v2.0) for tenant data extraction and event monitoring, and the Salto Space SHIP (Salto Host Interface Protocol) for programmatic user creation and credential assignment within the access control system. A middleware integration layer is recommended to bridge the two platforms, mapping StarRez tenant creation events to Salto Space user provisioning and JUSTin Mobile digital key issuance. This approach enables a fully automated workflow where new tenants receive building access credentials on their smartphones without manual intervention by facility management staff.</p>
+</div>
+
+<h1>Background</h1>
+<p>Commercial and residential property operators increasingly seek to automate the tenant onboarding process, eliminating manual steps in provisioning building access. When a new tenant is added to a property management system, the expectation is that their building access credentials — including digital keys for smartphone-based entry — should be provisioned automatically.</p>
+<p>This report investigates how StarRez, used as the tenant and residential management system, can be integrated with Salto Space, an electronic access control platform, to achieve this automated workflow. The specific use case focuses on:</p>
+<ol>
+  <li>A new tenant is created in StarRez (Entry record with an associated Booking)</li>
+  <li>The tenant's details are automatically provisioned as a user in Salto Space</li>
+  <li>Access permissions are assigned based on the tenant's allocated space</li>
+  <li>A digital key is issued to the tenant via the Salto JUSTin Mobile app</li>
+</ol>
+
+<hr class="section-divider">
+
+<h1>System Overview</h1>
+
+<h2>StarRez — Residential Management Platform</h2>
+<p>StarRez is a global residential management platform used by higher education institutions, student housing providers, and commercial property operators. It manages the complete resident lifecycle including applications, room allocation, bookings, billing, and check-in/check-out processes (<a href="https://www.starrez.com">StarRez</a>).</p>
+<p>Key data objects relevant to this integration include:</p>
+<table>
+  <thead><tr><th>StarRez Object</th><th>Description</th><th>Relevance</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Entry</strong></td><td>The primary tenant/resident record containing personal details (name, email, phone, ID fields)</td><td>Source of tenant identity for Salto Space user creation</td></tr>
+    <tr><td><strong>Booking</strong></td><td>Ties an Entry to a Room Space for a date range (check-in/check-out dates, room allocation)</td><td>Defines access period and location mapping to Salto access groups</td></tr>
+    <tr><td><strong>Room Location</strong></td><td>Physical building/floor/zone hierarchy</td><td>Maps to Salto Space access points and access levels</td></tr>
+    <tr><td><strong>Room Space</strong></td><td>Individual room or unit within a location</td><td>Maps to specific Salto door/access point</td></tr>
+    <tr><td><strong>Entry Detail</strong></td><td>Extended tenant details including contact information</td><td>Mobile phone number required for JUSTin digital key delivery</td></tr>
+  </tbody>
+</table>
+
+<h2>Salto Space — Access Control Platform</h2>
+<p>Salto ProAccess Space is an on-premises access control management platform by Salto Systems. It manages electronic locks, user credentials, access permissions, and audit trails across buildings and campuses (<a href="https://developer.saltosystems.com/space/">Salto Developer</a>).</p>
+<table>
+  <thead><tr><th>Salto Space Object</th><th>Description</th><th>Relevance</th></tr></thead>
+  <tbody>
+    <tr><td><strong>User (Cardholder)</strong></td><td>Individual with access credentials — includes name, identifiers, phone, activation/expiration dates</td><td>Created from StarRez Entry data</td></tr>
+    <tr><td><strong>User Access Level</strong></td><td>Named group of access points with shared permissions (e.g. "Level 12 Tenant")</td><td>Assigned based on StarRez Booking room location</td></tr>
+    <tr><td><strong>Access Point</strong></td><td>Physical door or entry point secured by a Salto electronic lock</td><td>Individual doors the tenant can access</td></tr>
+    <tr><td><strong>Key</strong></td><td>Credential assigned to a user — can be physical (card/fob) or digital (JUSTin Mobile)</td><td>Digital key issued via JUSTin Mobile app</td></tr>
+    <tr><td><strong>Calendar/Timetable</strong></td><td>Defines when access is permitted</td><td>Controls time-based access restrictions</td></tr>
+  </tbody>
+</table>
+
+<h2>Salto JUSTin Mobile</h2>
+<p>Salto JUSTin Mobile is a smartphone application (iOS and Android) that replaces physical access cards with digital keys. Keys are delivered Over-The-Air (OTA) from the Salto Space management software to the tenant's registered and verified mobile device. The phone uses Bluetooth Low Energy (BLE) or NFC to communicate with Salto electronic locks (<a href="https://support.saltosystems.com/space/justin/user-guide/">Salto JUSTin Mobile User Guide</a>).</p>
+
+<table>
+  <thead><tr><th>Feature</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td>Platforms</td><td>iOS (all versions) and Android</td></tr>
+    <tr><td>Communication</td><td>Bluetooth Low Energy (BLE) — all devices; NFC — Android all, iOS XS+ with iOS 17.4+ (EEA only)</td></tr>
+    <tr><td>Key Delivery</td><td>Over-The-Air (OTA) via cloud push notification or manual pull-to-refresh</td></tr>
+    <tr><td>Verification</td><td>SMS verification code sent to registered mobile number</td></tr>
+    <tr><td>Security</td><td>End-to-end encryption of key data and BLE transmission</td></tr>
+    <tr><td>Widgets</td><td>iOS Lock Screen widget (iOS 16+), Home Screen widget (iOS 14+)</td></tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<h1>API and Integration Capabilities</h1>
+
+<h2>StarRez REST API (v2.0)</h2>
+<p>StarRez provides a comprehensive REST API that allows full CRUD (Create, Read, Update, Delete) operations against its database tables, as well as business function execution and ad-hoc querying (<a href="https://learn.microsoft.com/en-us/connectors/starrezrestv1/">Microsoft Learn — StarRez REST v1 Connector</a>).</p>
+
+<h3>Authentication</h3>
+<table>
+  <thead><tr><th>Method</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td>Primary</td><td>Web Service Token (API key) — created via Account > Web Service Tokens in StarRez</td></tr>
+    <tr><td>Legacy</td><td>HTTP Basic Authentication (username/password)</td></tr>
+    <tr><td>Base URL Pattern</td><td><code>https://{instance}.starrezhousing.com/StarRezREST/services/</code></td></tr>
+    <tr><td>Rate Limit</td><td>100 API calls per connection per 60 seconds</td></tr>
+  </tbody>
+</table>
+
+<h3>Key API Endpoints</h3>
+<table>
+  <thead><tr><th>Operation</th><th>Endpoint</th><th>Method</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>Create Entry (Tenant)</td><td><code>/create/Entry</code></td><td>POST</td><td>Creates a new tenant record. Required fields: NameFirst, NameLast</td></tr>
+    <tr><td>Get Entry</td><td><code>/select/Entry/{id}</code></td><td>GET</td><td>Retrieves tenant details by ID or search criteria</td></tr>
+    <tr><td>Create Booking</td><td><code>/create/Booking</code></td><td>POST</td><td>Creates room allocation. Required: EntryID. Includes CheckInDate, CheckOutDate, RoomSpaceID</td></tr>
+    <tr><td>Get Booking</td><td><code>/select/Booking/{id}</code></td><td>GET</td><td>Retrieves booking details including room and date information</td></tr>
+    <tr><td>Get Entry Detail</td><td><code>/select/EntryDetail</code></td><td>GET</td><td>Retrieves extended contact info (mobile phone number)</td></tr>
+    <tr><td>Get Room Location</td><td><code>/select/RoomLocation/{id}</code></td><td>GET</td><td>Retrieves building/floor/zone hierarchy data</td></tr>
+    <tr><td>Query (StarQL)</td><td><code>/query</code></td><td>POST/GET</td><td>Ad-hoc queries using StarRez Query Language for complex data extraction</td></tr>
+    <tr><td>Execute Function</td><td><code>/function/{table}/{id}/{function}</code></td><td>POST</td><td>Executes business functions (e.g. Entry CheckIn)</td></tr>
+    <tr><td>Get Next Message</td><td><code>/getnextmessage/{subscriberID}</code></td><td>GET</td><td>Polls for data subscription messages (event-driven trigger)</td></tr>
+  </tbody>
+</table>
+
+<h3>StarRez Entry Record — Key Fields for Integration</h3>
+<table>
+  <thead><tr><th>Field</th><th>Type</th><th>Maps To (Salto Space)</th></tr></thead>
+  <tbody>
+    <tr><td>EntryID</td><td>Integer</td><td>External User ID / reference</td></tr>
+    <tr><td>NameFirst</td><td>String (Required)</td><td>User First Name</td></tr>
+    <tr><td>NameLast</td><td>String (Required)</td><td>User Last Name</td></tr>
+    <tr><td>PortalEmail</td><td>String</td><td>User Email</td></tr>
+    <tr><td>ID1–ID5</td><td>String/Integer</td><td>External ID / badge number</td></tr>
+  </tbody>
+</table>
+
+<h3>Event Detection — Data Subscriptions</h3>
+<p>StarRez supports a <strong>Data Subscription</strong> mechanism that allows external systems to subscribe to data change events. When a monitored record changes (e.g., a new Entry is created, a Booking status changes), a message is generated that can be polled via the <code>/getnextmessage/{subscriberID}</code> endpoint (<a href="https://www.starrez.com/video-testimonials/automation-with-data-subscriptions">StarRez — Data Subscriptions</a>). This provides the event-driven trigger needed to initiate the Salto Space provisioning workflow.</p>
+<p>Additionally, StarRez has a certified <strong>Microsoft Power Automate</strong> connector (StarRez REST v1) that can be used to create scheduled or trigger-based flows — for example, polling for new bookings at defined intervals and triggering downstream API calls to Salto Space (<a href="https://www.starrez.com/news/starrez-expands-partnership-with-microsoft-to-include-power-automate-connector-for-seamless-integration-capabilities">StarRez Power Automate Announcement</a>).</p>
+
+<hr class="section-divider">
+
+<h2>Salto Space Integration Interfaces</h2>
+<p>Salto Space provides several integration pathways, each suited to different use cases:</p>
+
+<h3>1. SHIP Protocol (Salto Host Interface Protocol)</h3>
+<p>SHIP is Salto's proprietary integration protocol, designed to allow third-party systems (BMS, CCTV, time and attendance, property management) to programmatically manage users, keys, and access permissions within Salto Space (<a href="https://support.saltosystems.com/space/user-guide/operator/general-options/ship/">Salto SHIP Documentation</a>).</p>
+
+<table>
+  <thead><tr><th>Capability</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td>Protocol Type</td><td>Proprietary (Salto-defined message format)</td></tr>
+    <tr><td>Transport</td><td>STP (TCP/IP) or HTTP(S) — configurable</td></tr>
+    <tr><td>Authentication</td><td>None, Basic (HTTP), or Custom API Key</td></tr>
+    <tr><td>Direction</td><td>Bidirectional — server and client modes</td></tr>
+    <tr><td>Operations</td><td>User CRUD, key assignment/cancellation, access level management, door control, audit trail retrieval</td></tr>
+    <tr><td>Licensing</td><td>License-dependent feature — requires SHIP licence from Salto</td></tr>
+    <tr><td>NDA Required</td><td>Yes — integration requires NDA with Salto and access to SHIP specification document</td></tr>
+    <tr><td>Encoding</td><td>ISO-8859-1 or UTF-8 (configurable)</td></tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Important:</strong> The SHIP protocol specification is not publicly available. Integrators must contact Salto Systems, sign a non-disclosure agreement (NDA), and obtain the SHIP specification document to develop against this interface. This is the recommended pathway for deep, automated integration between property management systems and Salto Space.
+</div>
+
+<h3>2. Seam API (Third-Party Cloud Bridge)</h3>
+<p>Seam provides a cloud-based API that acts as a bridge to on-premises Salto Space installations. It abstracts the SHIP protocol into a modern RESTful API with standardised endpoints for user management, access group assignment, and credential provisioning (<a href="https://docs.seam.co/latest/device-and-system-integration-guides/salto-proaccess-space-access-system">Seam — Salto Space Integration</a>).</p>
+
+<table>
+  <thead><tr><th>Seam API Resource</th><th>Salto Space Equivalent</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>Access System User</td><td>User (Cardholder)</td><td>Create and manage individuals with access permissions</td></tr>
+    <tr><td>Access Group</td><td>User Access Level</td><td>Collections of users with shared permissions to specific entrances</td></tr>
+    <tr><td>Entrance</td><td>Access Point</td><td>Physical doors secured by Salto devices</td></tr>
+    <tr><td>Credential</td><td>Key (Physical or Digital)</td><td>Key cards or mobile keys — max 1 card + 1 mobile key per user</td></tr>
+  </tbody>
+</table>
+
+<p>The Seam integration requires a <strong>Seam Bridge</strong> device installed on the same network as the Salto Space server to relay API commands between the Seam cloud and the on-premises Salto Space installation.</p>
+
+<h3>3. Salto Space Hospitality API</h3>
+<p>Salto provides a dedicated Hospitality API for hotel and short-stay accommodation use cases. This API supports Apple Wallet key creation and management, guest check-in/check-out workflows, and key lifecycle operations (<a href="https://developer.saltosystems.com/space/hospitality-api/">Salto Space Hospitality API</a>). Authentication uses Bearer tokens issued by Salto.</p>
+
+<div class="note-box">
+  <strong>Note:</strong> The Hospitality API currently supports only Apple Wallet keys for hotel guest rooms. Physical cards and staff keys are not supported through this API. For broader tenant management including JUSTin Mobile BLE keys, the SHIP protocol or Seam API bridge is required.
+</div>
+
+<h3>4. JUSTin Mobile SDK</h3>
+<p>For organisations building custom mobile applications, Salto provides the JUSTin Mobile SDK (iOS and Android). This SDK enables developers to embed digital key and BLE door-unlock capabilities directly into a branded tenant app (<a href="https://www.axon.dev/blog/how-to-integrate-salto-justin-mobile-sdk-into-the-property-management-system">Axon.dev — JUSTin Mobile SDK Integration</a>).</p>
+<ul>
+  <li>SDK is not publicly available — must be requested from Salto Systems</li>
+  <li>Typical integration timeline: 2–4 weeks for basic, longer for complex multi-user workflows</li>
+  <li>Requires iOS and/or Android developers plus a backend developer</li>
+  <li>All key data is encrypted end-to-end</li>
+</ul>
+
+<hr class="section-divider">
+
+<h1>Integration Architecture</h1>
+
+<h2>Recommended Architecture</h2>
+<p>The integration between StarRez and Salto Space requires a <strong>middleware integration layer</strong> to orchestrate data flow between the two platforms. Three architectural options are available:</p>
+
+<table>
+  <thead><tr><th>Option</th><th>Approach</th><th>Pros</th><th>Cons</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="badge badge-green">Recommended</span><br><strong>Option A: Direct SHIP Integration</strong></td>
+      <td>Custom middleware server communicates with StarRez REST API and Salto Space SHIP protocol directly</td>
+      <td>Full control over operations; lowest latency; no third-party dependency; supports all SHIP operations including JUSTin key assignment</td>
+      <td>Requires SHIP NDA and specification; more development effort; requires network access to Salto Space server</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-blue">Alternative</span><br><strong>Option B: Seam API Bridge</strong></td>
+      <td>Middleware communicates with StarRez REST API and Seam cloud API; Seam Bridge relays to Salto Space</td>
+      <td>Modern RESTful API; well-documented; faster development; standardised credential management</td>
+      <td>Requires Seam subscription and Seam Bridge hardware; adds cloud dependency; potential latency</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-orange">No-Code</span><br><strong>Option C: Power Automate + Seam</strong></td>
+      <td>Microsoft Power Automate uses StarRez connector for triggers, HTTP connector for Seam API calls</td>
+      <td>No custom code required; visual workflow designer; leverages StarRez Power Automate connector</td>
+      <td>Limited error handling; Power Automate Premium licence required; less flexible for complex logic</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<h1>Integration Workflow</h1>
+<p>The following workflow describes the automated process from new tenant creation in StarRez to digital key delivery via JUSTin Mobile:</p>
+
+<div class="flow-diagram">
+  <div class="flow-step">1. New Tenant<br>Created in StarRez</div>
+  <span class="flow-arrow">&#10132;</span>
+  <div class="flow-step">2. Booking Confirmed<br>(Room Allocated)</div>
+  <span class="flow-arrow">&#10132;</span>
+  <div class="flow-step">3. Middleware<br>Detects Event</div>
+  <span class="flow-arrow">&#10132;</span>
+  <div class="flow-step">4. User Created<br>in Salto Space</div>
+  <span class="flow-arrow">&#10132;</span>
+  <div class="flow-step">5. Access Level<br>Assigned</div>
+  <span class="flow-arrow">&#10132;</span>
+  <div class="flow-step">6. JUSTin Digital<br>Key Issued</div>
+</div>
+
+<h2>Step 1 — New Tenant Created in StarRez</h2>
+<div class="step-box">
+  <h3>Trigger Event</h3>
+  <p>A property administrator creates a new Entry (tenant) record in StarRez via the web interface, self-service portal, or API. The Entry record includes the tenant's name, email, mobile phone number (in international format, e.g. +61412345678), and any relevant ID fields.</p>
+  <p><strong>API Reference:</strong></p>
+  <div class="api-code"><span class="keyword">POST</span> /StarRezREST/services/<span class="string">create/Entry</span>
+
+{
+  "NameFirst": "Jane",
+  "NameLast": "Smith",
+  "PortalEmail": "jane.smith@email.com",
+  "ID1": "TNT-20260401-001"
+}</div>
+  <p>The system returns the new <code>EntryID</code> which serves as the unique identifier for all subsequent operations.</p>
+</div>
+
+<h2>Step 2 — Booking Confirmed (Room Allocated)</h2>
+<div class="step-box">
+  <h3>Room Allocation</h3>
+  <p>A Booking record is created linking the Entry to a specific Room Space, with defined check-in and check-out dates. This establishes the access period and physical location that will be mapped to Salto Space access permissions.</p>
+  <div class="api-code"><span class="keyword">POST</span> /StarRezREST/services/<span class="string">create/Booking</span>
+
+{
+  "EntryID": 12345,
+  "RoomSpaceID": 501,
+  "RoomLocationID": 42,
+  "CheckInDate": "2026-04-15T00:00:00",
+  "CheckOutDate": "2027-04-14T23:59:59",
+  "EntryStatusEnum": "InRoom"
+}</div>
+</div>
+
+<h2>Step 3 — Middleware Detects Event</h2>
+<div class="step-box">
+  <h3>Event Detection</h3>
+  <p>The middleware layer detects the new booking via one of these methods:</p>
+  <ul>
+    <li><strong>Data Subscription Polling:</strong> The middleware polls <code>/getnextmessage/{subscriberID}</code> for new booking creation events</li>
+    <li><strong>Scheduled Query:</strong> A periodic StarQL query (<code>/query</code>) retrieves recently created bookings with status "InRoom" or "Confirmed"</li>
+    <li><strong>Power Automate Trigger:</strong> A scheduled flow polls the Get Booking action and filters for new records</li>
+  </ul>
+  <p>Upon detection, the middleware retrieves the full tenant profile:</p>
+  <div class="api-code"><span class="comment">// 1. Get Entry (tenant details)</span>
+<span class="keyword">GET</span> /StarRezREST/services/<span class="string">select/Entry/12345</span>
+
+<span class="comment">// 2. Get Entry Detail (mobile phone)</span>
+<span class="keyword">GET</span> /StarRezREST/services/<span class="string">select/EntryDetail?EntryID=12345</span>
+
+<span class="comment">// 3. Get Booking (room and dates)</span>
+<span class="keyword">GET</span> /StarRezREST/services/<span class="string">select/Booking?EntryID=12345&amp;_orderby=CheckInDate+desc&amp;_top=1</span>
+
+<span class="comment">// 4. Get Room Location (building/floor mapping)</span>
+<span class="keyword">GET</span> /StarRezREST/services/<span class="string">select/RoomLocation/42</span></div>
+</div>
+
+<h2>Step 4 — User Created in Salto Space</h2>
+<div class="step-box">
+  <h3>Salto Space User Provisioning (via SHIP or Seam API)</h3>
+  <p>The middleware creates a new user in Salto Space, mapping StarRez fields to Salto user attributes:</p>
+
+  <table>
+    <thead><tr><th>StarRez Field</th><th>Salto Space Field</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>NameFirst</td><td>First Name</td><td>Direct mapping</td></tr>
+      <tr><td>NameLast</td><td>Last Name</td><td>Direct mapping</td></tr>
+      <tr><td>EntryID or ID1</td><td>External ID / GPF1</td><td>Used for cross-reference and duplicate prevention</td></tr>
+      <tr><td>PortalEmail</td><td>Email</td><td>Used for notifications</td></tr>
+      <tr><td>Mobile Phone (from EntryDetail)</td><td>Mobile Phone Data</td><td>Must be in international format (+61...) for JUSTin key delivery</td></tr>
+      <tr><td>Booking.CheckInDate</td><td>User Activation Date</td><td>When the user's key becomes active</td></tr>
+      <tr><td>Booking.CheckOutDate</td><td>User Expiration Date</td><td>When the user's key expires</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Via Seam API (Option B):</strong></p>
+  <div class="api-code"><span class="keyword">POST</span> https://connect.getseam.com/acs/users/create
+
+{
+  "acs_system_id": "acs_system_xxx",
+  "full_name": "Jane Smith",
+  "email_address": "jane.smith@email.com",
+  "phone_number": "+61412345678",
+  "access_schedule": {
+    "starts_at": "2026-04-15T00:00:00+10:00",
+    "ends_at": "2027-04-14T23:59:59+10:00"
+  },
+  "external_type": "pms_user",
+  "external_type_display_name": "Tenant"
+}</div>
+
+  <div class="note-box">
+    <strong>Mobile Phone Format:</strong> Salto requires the mobile number in international format with country code prefix and no spaces (e.g. <code>+61412345678</code> for Australian numbers). The middleware must validate and reformat phone numbers from StarRez before passing to Salto Space (<a href="https://stayntouch.freshdesk.com/support/solutions/articles/24000090735-salto-mobile-justin-mobile-app-integration">StayNTouch — Salto Mobile Integration</a>).
+  </div>
+</div>
+
+<h2>Step 5 — Access Level Assigned</h2>
+<div class="step-box">
+  <h3>Access Group / Level Mapping</h3>
+  <p>The middleware maps the StarRez Room Location to the corresponding Salto Space User Access Level. This requires a pre-configured mapping table maintained as part of the integration configuration:</p>
+
+  <table>
+    <thead><tr><th>StarRez Room Location</th><th>Salto Space User Access Level</th><th>Access Points Included</th></tr></thead>
+    <tbody>
+      <tr><td>Building A — Level 12</td><td>"Level 12 Tenant"</td><td>Main entrance, Lift lobby, Level 12 corridor, Allocated unit</td></tr>
+      <tr><td>Building A — Level 14</td><td>"Level 14 Tenant"</td><td>Main entrance, Lift lobby, Level 14 corridor, Allocated unit</td></tr>
+      <tr><td>Building B — Ground</td><td>"Building B Ground Tenant"</td><td>Building B entrance, Ground corridor, Allocated unit</td></tr>
+    </tbody>
+  </table>
+
+  <p>Common area access (gym, mail room, bicycle storage) can be added as a separate base-level access group assigned to all tenants.</p>
+
+  <p><strong>Via Seam API:</strong></p>
+  <div class="api-code"><span class="keyword">POST</span> https://connect.getseam.com/acs/users/add_to_access_group
+
+{
+  "acs_user_id": "acs_user_xxx",
+  "acs_access_group_id": "acs_access_group_level12"
+}</div>
+</div>
+
+<h2>Step 6 — JUSTin Mobile Digital Key Issued</h2>
+<div class="step-box">
+  <h3>Digital Key Delivery</h3>
+  <p>Once the user is created in Salto Space with the correct mobile phone number and access levels, a digital key is assigned. This triggers the JUSTin Mobile key delivery process:</p>
+
+  <ol>
+    <li><strong>Key Assignment:</strong> The middleware instructs Salto Space to assign a JUSTin Mobile key to the user (via SHIP command or Seam credential creation)</li>
+    <li><strong>OTA Delivery:</strong> Salto's cloud infrastructure delivers the encrypted digital key to the JUSTin Mobile app on the tenant's smartphone</li>
+    <li><strong>SMS Verification:</strong> Salto sends a verification code via SMS to the tenant's registered mobile number</li>
+    <li><strong>App Activation:</strong> The tenant downloads the JUSTin Mobile app (if not already installed), enters the verification code, and the key appears in the app</li>
+    <li><strong>Building Access:</strong> The tenant can now unlock doors by opening the JUSTin Mobile app, selecting the key, and presenting the phone to the Salto lock via BLE or NFC</li>
+  </ol>
+
+  <p><strong>Via Seam API (Mobile Key Credential):</strong></p>
+  <div class="api-code"><span class="keyword">POST</span> https://connect.getseam.com/acs/credentials/create
+
+{
+  "acs_user_id": "acs_user_xxx",
+  "access_method": "mobile_key",
+  "is_multi_phone_sync_credential": false
+}</div>
+
+  <p><strong>Tenant-Side Experience:</strong></p>
+  <ol>
+    <li>Tenant receives an SMS or email notification to download the JUSTin Mobile app</li>
+    <li>Tenant opens the app, enters their mobile number</li>
+    <li>Salto sends an SMS verification code</li>
+    <li>Tenant enters the code — the app activates and displays available keys</li>
+    <li>Tenant taps the green unlock button and presents phone to the lock</li>
+  </ol>
+</div>
+
+<hr class="section-divider">
+
+<h1>Data Flow Summary</h1>
+
+<table>
+  <thead><tr><th>Step</th><th>Source System</th><th>Data / Action</th><th>Target System</th><th>Protocol</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>StarRez</td><td>New Entry + Booking created</td><td>Middleware</td><td>REST API (polling or subscription)</td></tr>
+    <tr><td>2</td><td>Middleware</td><td>Retrieves Entry, EntryDetail, Booking, RoomLocation</td><td>StarRez</td><td>REST API (GET)</td></tr>
+    <tr><td>3</td><td>Middleware</td><td>Maps room location to Salto access level</td><td>Mapping Table</td><td>Internal lookup</td></tr>
+    <tr><td>4</td><td>Middleware</td><td>Creates User with mapped fields</td><td>Salto Space</td><td>SHIP / Seam API</td></tr>
+    <tr><td>5</td><td>Middleware</td><td>Assigns User Access Level</td><td>Salto Space</td><td>SHIP / Seam API</td></tr>
+    <tr><td>6</td><td>Middleware</td><td>Assigns JUSTin Mobile credential</td><td>Salto Space</td><td>SHIP / Seam API</td></tr>
+    <tr><td>7</td><td>Salto Cloud</td><td>Delivers digital key OTA + SMS verification</td><td>Tenant's Phone</td><td>Push notification + SMS</td></tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<h1>Lifecycle Management</h1>
+<p>Beyond initial provisioning, the integration should handle the full tenant lifecycle:</p>
+
+<table>
+  <thead><tr><th>Event</th><th>StarRez Trigger</th><th>Salto Space Action</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Tenant Move-In</strong></td><td>Booking status → "InRoom" / Check-in function executed</td><td>Create user, assign access level, issue JUSTin key</td></tr>
+    <tr><td><strong>Room Change</strong></td><td>Booking updated with new RoomSpaceID / RoomLocationID</td><td>Update user access level to new location; reissue key if access points change</td></tr>
+    <tr><td><strong>Lease Extension</strong></td><td>Booking CheckOutDate updated</td><td>Update user expiration date in Salto Space</td></tr>
+    <tr><td><strong>Tenant Move-Out</strong></td><td>Booking status → "CheckedOut" / Check-out function executed</td><td>Cancel JUSTin Mobile key; deactivate or delete user</td></tr>
+    <tr><td><strong>Lost Phone</strong></td><td>Manual trigger via admin</td><td>Cancel existing JUSTin key; reissue to new device</td></tr>
+    <tr><td><strong>Access Suspension</strong></td><td>Entry status changed (e.g. breach of terms)</td><td>Temporarily deactivate user credentials</td></tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<h1>Prerequisites and Requirements</h1>
+
+<h2>Licensing and Agreements</h2>
+<table>
+  <thead><tr><th>Requirement</th><th>Provider</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>StarRez REST API licence</td><td>StarRez</td><td>Required for API access — included in some subscription tiers</td></tr>
+    <tr><td>Salto Space SHIP licence</td><td>Salto Systems</td><td>Required for SHIP protocol access — licence-dependent feature</td></tr>
+    <tr><td>SHIP NDA</td><td>Salto Systems</td><td>Must be signed before receiving SHIP specification document</td></tr>
+    <tr><td>Seam subscription (if Option B)</td><td>Seam</td><td>Required for Seam API access, includes Seam Bridge hardware</td></tr>
+    <tr><td>JUSTin Mobile licence</td><td>Salto Systems</td><td>Per-site licence for JUSTin Mobile digital key functionality</td></tr>
+    <tr><td>Power Automate Premium (if Option C)</td><td>Microsoft</td><td>Required for StarRez connector — Premium connector classification</td></tr>
+  </tbody>
+</table>
+
+<h2>Technical Requirements</h2>
+<table>
+  <thead><tr><th>Component</th><th>Requirement</th></tr></thead>
+  <tbody>
+    <tr><td>Middleware Server</td><td>Cloud-hosted or on-premises server with network access to both StarRez (internet) and Salto Space server (LAN/VPN)</td></tr>
+    <tr><td>Salto Space Server</td><td>SHIP enabled with HTTP(S) transport and Basic or Custom API Key authentication configured</td></tr>
+    <tr><td>Network</td><td>Middleware must reach Salto Space server on configured SHIP port (default: web interface port for HTTP, or custom TCP port for STP)</td></tr>
+    <tr><td>Salto Locks</td><td>BLE-enabled electronic locks (required for JUSTin Mobile compatibility)</td></tr>
+    <tr><td>Seam Bridge (Option B only)</td><td>Physical device on same network as Salto Space server</td></tr>
+    <tr><td>Room/Access Mapping</td><td>Pre-configured lookup table mapping StarRez RoomLocationID values to Salto Space User Access Level names</td></tr>
+  </tbody>
+</table>
+
+<hr class="section-divider">
+
+<h1>Recommendations</h1>
+<ol>
+  <li><strong>Engage Salto Systems early</strong> — Initiate the NDA process and request the SHIP specification document. This is a prerequisite for the recommended direct integration (Option A) and typically takes 1–2 weeks.</li>
+  <li><strong>Evaluate Seam API as an accelerator</strong> — If rapid deployment is prioritised, the Seam API bridge (Option B) provides a well-documented REST API that abstracts the SHIP complexity. This is a good option if the integrator lacks prior SHIP experience.</li>
+  <li><strong>Validate mobile phone data quality</strong> — Ensure StarRez captures mobile numbers in international format (+61...) as this is critical for JUSTin Mobile key delivery. Implement format validation in the StarRez portal or middleware layer.</li>
+  <li><strong>Build the room-to-access-level mapping</strong> — Create and maintain a configuration table that maps StarRez Room Location IDs to Salto Space User Access Level names. This mapping should be version-controlled and auditable.</li>
+  <li><strong>Implement error handling and retry logic</strong> — The middleware should handle API failures gracefully, with retry logic, dead-letter queuing, and alerting for failed provisioning attempts.</li>
+  <li><strong>Test with pilot group</strong> — Deploy the integration with a small tenant cohort before full rollout to validate the end-to-end workflow, particularly the JUSTin Mobile key delivery and SMS verification flow.</li>
+  <li><strong>Plan for lifecycle events</strong> — Ensure the integration handles not just initial provisioning but also room changes, lease extensions, move-outs, and emergency access revocation.</li>
+  <li><strong>Document the integration</strong> — Maintain a living integration specification document covering field mappings, API credentials, error codes, and operational procedures for troubleshooting.</li>
+</ol>
+
+<hr class="section-divider">
+
+<h1>Sources</h1>
+<table>
+  <thead><tr><th>Source</th><th>URL</th></tr></thead>
+  <tbody>
+    <tr><td>StarRez REST v1 Connector — Microsoft Learn</td><td><a href="https://learn.microsoft.com/en-us/connectors/starrezrestv1/">https://learn.microsoft.com/en-us/connectors/starrezrestv1/</a></td></tr>
+    <tr><td>StarRez REST API Web Services</td><td><a href="https://miamioh.starrezhousing.com/StarRezREST/services">https://miamioh.starrezhousing.com/StarRezREST/services</a></td></tr>
+    <tr><td>StarRez Python API Client (Swagger/OpenAPI)</td><td><a href="https://github.com/CalPolyResDev/StarRezAPI">https://github.com/CalPolyResDev/StarRezAPI</a></td></tr>
+    <tr><td>StarRez Power Automate Partnership Announcement</td><td><a href="https://www.starrez.com/news/starrez-expands-partnership-with-microsoft-to-include-power-automate-connector-for-seamless-integration-capabilities">https://www.starrez.com/news/starrez-expands-partnership-with-microsoft...</a></td></tr>
+    <tr><td>StarRez Data Subscriptions</td><td><a href="https://www.starrez.com/video-testimonials/automation-with-data-subscriptions">https://www.starrez.com/video-testimonials/automation-with-data-subscriptions</a></td></tr>
+    <tr><td>Salto Space Developer Portal</td><td><a href="https://developer.saltosystems.com/space/">https://developer.saltosystems.com/space/</a></td></tr>
+    <tr><td>Salto Space Hospitality API</td><td><a href="https://developer.saltosystems.com/space/hospitality-api/">https://developer.saltosystems.com/space/hospitality-api/</a></td></tr>
+    <tr><td>Salto Space SHIP Configuration</td><td><a href="https://support.saltosystems.com/space/user-guide/operator/general-options/ship/">https://support.saltosystems.com/space/user-guide/operator/general-options/ship/</a></td></tr>
+    <tr><td>Salto Space User Management</td><td><a href="https://support.saltosystems.com/space/user-guide/operator/cardholders/users/">https://support.saltosystems.com/space/user-guide/operator/cardholders/users/</a></td></tr>
+    <tr><td>Salto JUSTin Mobile User Guide</td><td><a href="https://support.saltosystems.com/space/justin/user-guide/">https://support.saltosystems.com/space/justin/user-guide/</a></td></tr>
+    <tr><td>Seam API — Salto Space Integration</td><td><a href="https://docs.seam.co/latest/device-and-system-integration-guides/salto-proaccess-space-access-system">https://docs.seam.co/latest/device-and-system-integration-guides/salto-proaccess-space...</a></td></tr>
+    <tr><td>Axon.dev — JUSTin Mobile SDK Integration Guide</td><td><a href="https://www.axon.dev/blog/how-to-integrate-salto-justin-mobile-sdk-into-the-property-management-system">https://www.axon.dev/blog/how-to-integrate-salto-justin-mobile-sdk...</a></td></tr>
+    <tr><td>StayNTouch — Salto JUSTin Mobile Integration</td><td><a href="https://stayntouch.freshdesk.com/support/solutions/articles/24000090735-salto-mobile-justin-mobile-app-integration">https://stayntouch.freshdesk.com/support/solutions/articles/24000090735...</a></td></tr>
+  </tbody>
+</table>
+
+<footer>
+  <span>Meld Strategies</span>
+  <span>StarRez to Salto Space Integration Report — 31 March 2026</span>
+</footer>
+
+</body>
+</html>
