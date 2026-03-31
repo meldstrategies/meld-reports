@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Capability Report — Tuya Development Platform — Meld Strategies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Quicksand', Calibri, sans-serif;
+      font-size: 11pt;
+      color: #000000;
+      background: #ffffff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 20px 40px 30px;
+      margin-bottom: 10px;
+    }
+    .cover-logo {
+      align-self: flex-end;
+      width: 160px;
+      margin-bottom: 16px;
+    }
+    .cover h1 {
+      font-size: 26pt;
+      font-weight: 700;
+      color: #71BF44;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .cover .subtitle {
+      font-size: 14pt;
+      color: #555555;
+      margin-bottom: 20px;
+    }
+    .cover .meta {
+      font-size: 10pt;
+      color: #888;
+      line-height: 1.8;
+    }
+
+    /* ── CONTENT ── */
+    h2 {
+      font-size: 15pt;
+      font-weight: 700;
+      color: #71BF44;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #D0E8C5;
+      padding-bottom: 6px;
+    }
+
+    h3 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #000000;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    li { margin-bottom: 4px; }
+
+    a {
+      color: #71BF44;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* ── HIGHLIGHT BOX (Executive Summary) ── */
+    .highlight-box {
+      background: #F2FAF0;
+      border-left: 4px solid #71BF44;
+      padding: 20px 24px;
+      margin: 20px 0 28px;
+      border-radius: 0 6px 6px 0;
+    }
+    .highlight-box p { margin-bottom: 10px; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 10pt;
+    }
+
+    thead th {
+      background: #E1E1E1;
+      color: #000000;
+      font-weight: 700;
+      text-align: left;
+      padding: 9px 12px;
+      border: 1px solid #cccccc;
+    }
+
+    tbody tr:nth-child(odd)  td { background: #ffffff; }
+    tbody tr:nth-child(even) td { background: #F2FAF0; }
+
+    tbody td {
+      padding: 8px 12px;
+      border: 1px solid #e0e0e0;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    /* ── HR DIVIDER ── */
+    hr {
+      border: none;
+      border-top: 1.5px solid #D0E8C5;
+      margin: 32px 0;
+    }
+
+    /* ── SOURCES SECTION ── */
+    .sources-table td a {
+      word-break: break-all;
+    }
+
+    @media print {
+      .cover { page-break-after: always; }
+      body { padding: 0; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MELD DOWNLOAD BAR -->
+<div id="meld-download-bar" style="
+  position: sticky; top: 0; z-index: 9999;
+  background: #71BF44; color: #ffffff;
+  font-family: 'Quicksand', Calibri, sans-serif;
+  font-size: 10pt; font-weight: 600;
+  display: flex; align-items: center;
+  gap: 12px; padding: 8px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+">
+  <a href="https://www.perplexity.ai/computer/a/meld-reports-portal-1.R3ItBYRWGDphlbcgDgvA" onclick="if(window.history.length>1){window.history.back();return false;}" target="_top" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;display:flex;align-items:center;gap:6px;">&#127968; Reports Home</a>
+  <div style="flex:1;"></div>
+  <span style="opacity: 0.9; font-weight: 400;">Download this report:</span>
+  <a href="https://drive.google.com/file/d/1ycvswAv4xi7DaT5rQxIJRZgmAA8Piojb/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">&#128196; Google Doc</a>
+  <a href="https://drive.google.com/file/d/1yaSD_OELhplq4e1TtIx7qky2ywBXebu1/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">&#11015; PDF</a>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <img class="cover-logo" src="data:image/png;base64,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" alt="Meld Strategies">
+  <h1>Integration Capability Report</h1>
+  <div class="subtitle"><strong>Tuya Development Platform — IoT Cloud Platform</strong></div>
+  <div class="meta">
+    <strong>Vendor:</strong> Tuya Inc.<br>
+    <strong>Date:</strong> 31 March 2026<br>
+    <strong>Prepared by:</strong> Meld Strategies Pty Ltd
+  </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<h2>Executive Summary</h2>
+<div class="highlight-box">
+  <p>Tuya Inc. (NYSE: TUYA; HKEX: 2391) is a global AI cloud IoT Platform-as-a-Service (PaaS) provider with approximately 909,000 registered developers across 200+ countries. The Tuya Development Platform offers one of the most comprehensive integration ecosystems in the smart building and IoT space, spanning hardware protocols (Wi-Fi, Zigbee 3.0, BLE, Bluetooth Mesh, Z-Wave via Matter), industrial building automation protocols (Modbus, BACnet, OPC UA, KNX, DALI), the Matter smart home standard (CSA v1.0/1.1/1.2), a production-ready RESTful OpenAPI with OAuth 2.0, MQTT device messaging, an official MCP server SDK for AI agent integration (Python, Go, C#), and native IFTTT support via Smart Life.</p>
+  <p>The platform has a strong footprint in smart building scenarios via its IoT Edge Gateway, which bridges legacy BAS/BMS equipment to the Tuya cloud. Three deployment models are available — public cloud, IoT Private Cloud (AWS/Azure), and Cube Hybrid Cloud — making it suitable for organisations with data sovereignty or GDPR requirements. API pricing tiers range from a free Trial Edition (~26,000 calls/month) to Corporate Edition (~426 million calls/month). Gaps exist in Zapier and Microsoft Power Automate integrations, where no official or community connectors are currently available.</p>
+  <p><strong>Overall integration maturity: High.</strong> Tuya is well-suited to smart building, IoT automation, and AI agent use cases requiring broad device coverage and cloud API access.</p>
+</div>
+
+<!-- SYSTEM OVERVIEW -->
+<h2>System Overview</h2>
+<p>Tuya Inc. (NYSE: TUYA; HKEX: 2391) is a global AI cloud platform service provider founded in 2014. The company's mission is to "build an AIoT developer ecosystem to enable everything to be smart." Tuya operates as an IoT Platform-as-a-Service (PaaS) provider, supplying hardware access (network modules, SoC chips, gateways), cloud services (IoT Core, SaaS frameworks, data visualisation), and app development tools (OEM app builder, App SDK) to device manufacturers, brand owners, and OEM/ODM partners.</p>
+<p>As of Q3 2023, the platform had approximately 909,000 registered developers across 200+ countries and regions, with devices available in around 120,000 retail channels worldwide. By 2021, Tuya had become the largest IoT PaaS provider by volume of smart devices powered, holding a 14.9% revenue share in that category according to CIC. The platform processes over 100 million device requests and interactions daily and supports over 2,400 product categories. Tuya's infrastructure uses a multi-cloud architecture spanning Google Cloud, AWS, and Azure, with data centres in China, Europe (Central and Western), the Americas (East and West), India, and Singapore.</p>
+
+<h3>Deployment Models</h3>
+<ul>
+  <li><strong>Public Cloud</strong> — Standard deployment hosted on Tuya's multi-cloud infrastructure (Google Cloud, AWS, Azure); default for most developers.</li>
+  <li><strong>IoT Private Cloud</strong> — Independent deployment with data isolation and exclusive computing resources on AWS or Azure; supports multi-cloud distributed hot deployment; aimed at enterprises with regulatory or data-sovereignty requirements (e.g., GDPR).</li>
+  <li><strong>Cube Hybrid Cloud</strong> — Business-specific applications deployed privately on the customer's own servers or cloud vendors, while standard IoT platform services continue from Tuya's public cloud. Reduces cloud resource costs while meeting data privatisation mandates. Suited to smart retail, smart home real estate, and smart city deployments.</li>
+</ul>
+
+<!-- BUILDING TECHNOLOGY RELEVANCE -->
+<h2>Building Technology Relevance</h2>
+<p>Tuya has a documented smart building and building automation (BAS/BMS) vertical. Its IoT Edge Gateway supports industrial protocols including Modbus, BACnet, OPC UA, OPC DA, KNX, DALI, and SNMP, enabling integration with conventional BAS equipment. A dedicated building automation integration path exists using MQTT over the Tuya Edge Gateway for connecting subsystems such as HVAC, electrical/metering, fresh air, elevators, lighting, access control, and water systems. This makes Tuya directly relevant to building automation, smart building SaaS, SCADA-adjacent IoT, and energy management scenarios.</p>
+
+<hr>
+
+<!-- INTEGRATION SUMMARY -->
+<h2>Integration Summary</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Integration Type</th>
+      <th>Available</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Native Protocols (Hardware)</td><td>✓</td><td>Wi-Fi, Zigbee 3.0, Bluetooth/BLE, Bluetooth Mesh, Z-Wave (via Matter bridge), 433 MHz, RS-485, RS-232, Ethernet, Cellular</td></tr>
+    <tr><td>Industrial Protocols (Edge Gateway)</td><td>✓</td><td>Modbus, BACnet, OPC UA, OPC DA, KNX, DALI, SNMP</td></tr>
+    <tr><td>Matter Standard</td><td>✓</td><td>Full CSA Matter 1.0, 1.1, 1.2 support via TuyaOS Matter SDK</td></tr>
+    <tr><td>Smart Speaker Platforms</td><td>✓</td><td>Amazon Alexa, Google Assistant, Apple Siri (Advanced OEM), Samsung SmartThings</td></tr>
+    <tr><td>Smart Home Ecosystems</td><td>✓</td><td>Amazon Alexa, Google Home, Apple HomeKit (via HOOBS/HomeBridge or Matter), Samsung SmartThings</td></tr>
+    <tr><td>Cloud API (REST)</td><td>✓</td><td>Comprehensive RESTful OpenAPI with OAuth 2.0; 5 regional endpoints</td></tr>
+    <tr><td>Cloud API (MQTT)</td><td>✓</td><td>TuyaLink MQTT 3.1.1 for device-to-cloud; Message Subscription for cloud push</td></tr>
+    <tr><td>Cloud API (WebSocket)</td><td>✓</td><td>WebSocket used for MCP/AI agent connections</td></tr>
+    <tr><td>MCP Server</td><td>✓</td><td>Official MCP SDK (Python, Go, C#) and AI Agent Development Platform with MCP support</td></tr>
+    <tr><td>AI/LLM Integrations</td><td>✓</td><td>OpenAI, Claude, Gemini, Amazon Nova, Doubao, Tongyi Qianwen, Kimi, Yuanbao</td></tr>
+    <tr><td>IFTTT (Smart Life)</td><td>✓</td><td>11 triggers, 10 actions, 12 history queries via Smart Life integration</td></tr>
+    <tr><td>Make (Integromat)</td><td>Partial</td><td>Community-contributed connector only (not official); HTTP modules as fallback</td></tr>
+    <tr><td>Zapier</td><td>✗</td><td>No official or community integration confirmed; IFTTT recommended as alternative</td></tr>
+    <tr><td>n8n</td><td>Partial</td><td>Community node available; HTTP Request node with Tuya API also supported</td></tr>
+    <tr><td>Node-RED</td><td>Partial</td><td>Community package <code>node-red-contrib-tuya-devices</code> for local and cloud control</td></tr>
+    <tr><td>Home Assistant</td><td>✓</td><td>Official Tuya integration (stable, from HA 2024.2+); also via Smart Life HACS beta</td></tr>
+    <tr><td>Microsoft Power Automate</td><td>✗</td><td>No connector in Microsoft's connector list; Azure infrastructure partnership exists</td></tr>
+    <tr><td>Mobile App (Smart Life)</td><td>✓</td><td>Free app on iOS (App Store) and Android (Google Play); OEM white-label available</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION A: NATIVE INTEGRATIONS -->
+<h2>A. Native Integrations</h2>
+<p>Tuya's native integration capability spans hardware communication protocols, smart home ecosystems, and smart building subsystems. At the hardware level, Tuya manufactures and certifies network modules supporting <strong>Wi-Fi, Bluetooth LE, Bluetooth Mesh, Zigbee 3.0, 433 MHz RF, RS-485, RS-232, Ethernet, and cellular</strong> connectivity. Zigbee 3.0 gateways interoperate with standard Zigbee devices from third-party manufacturers including Philips Hue and SmartThings.</p>
+<p>Tuya's <strong>IoT Edge Gateway (TEdge)</strong> extends this to industrial and building automation protocols, natively supporting <strong>Modbus, BACnet, OPC UA, OPC DA, SNMP, KNX, and DALI</strong>, with toolsets for custom driver development. For building automation specifically, Tuya provides a dedicated MQTT-over-edge-gateway integration path where the BA system connects as an MQTT client to the Tuya IoT Edge Gateway acting as broker. At the ecosystem level, Tuya is a board member of the Connectivity Standards Alliance (CSA) and a founding contributor to the <strong>Matter</strong> smart home standard; TuyaOS Matter SDK supports Matter 1.0, 1.1, and 1.2 device types, enabling interoperability with all major smart home platforms.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Integrated System / Protocol</th>
+      <th>Type</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Wi-Fi (2.4 GHz)</td><td>Wireless RF</td><td>Direct cloud connection; supports EZ, AP, and Pegasus pairing modes</td></tr>
+    <tr><td>Bluetooth LE (BLE)</td><td>Wireless RF</td><td>Short-range, low-power; gateway sub-device connection</td></tr>
+    <tr><td>Bluetooth Mesh</td><td>Wireless RF</td><td>Up to 128 sub-devices; 200 m+ range in open space</td></tr>
+    <tr><td>Zigbee 3.0</td><td>Wireless RF</td><td>Certified; interoperates with Hue, SmartThings, and other Zigbee 3.0 devices</td></tr>
+    <tr><td>433 MHz RF</td><td>Wireless RF</td><td>Legacy RF support via Tuya modules</td></tr>
+    <tr><td>RS-485 / Modbus</td><td>Wired Industrial</td><td>Via Edge Gateway; supports x86 and ARM architectures</td></tr>
+    <tr><td>RS-232</td><td>Wired Serial</td><td>Supported as gateway sub-device protocol</td></tr>
+    <tr><td>BACnet</td><td>Building Automation</td><td>Via IoT Edge Gateway; supports BACnet IP and BACnet MS/TP</td></tr>
+    <tr><td>OPC UA / OPC DA</td><td>Industrial</td><td>Via IoT Edge Gateway; enables SCADA integration</td></tr>
+    <tr><td>KNX</td><td>Building Automation</td><td>Via IoT Edge Gateway; European smart building bus protocol</td></tr>
+    <tr><td>DALI</td><td>Lighting Control</td><td>Via IoT Edge Gateway; digital addressable lighting interface</td></tr>
+    <tr><td>SNMP</td><td>Network Management</td><td>Via IoT Edge Gateway; network device monitoring</td></tr>
+    <tr><td>Matter (CSA)</td><td>Smart Home Std.</td><td>Full Matter 1.0/1.1/1.2 via TuyaOS SDK; Wi-Fi and Thread transport</td></tr>
+    <tr><td>Amazon Alexa (AVS / WWA)</td><td>Voice Assistant</td><td>Official Alexa skill; also Works With Alexa certification path for OEM devices</td></tr>
+    <tr><td>Google Assistant / Home</td><td>Voice Assistant</td><td>Google Matter API integrated; direct device sharing</td></tr>
+    <tr><td>Apple HomeKit / Siri</td><td>Smart Home</td><td>Via Matter bridge or OEM App Advanced Edition (Siri); HOOBS integration also available</td></tr>
+    <tr><td>Samsung SmartThings</td><td>Smart Home</td><td>Via Matter bridge; SmartThings app integration confirmed</td></tr>
+    <tr><td>Home Assistant</td><td>Smart Home Hub</td><td>Official stable integration from HA 2024.2+; also Smart Life HACS beta</td></tr>
+    <tr><td>Ethernet</td><td>Wired LAN</td><td>Direct cloud or gateway; supports local LAN offline control</td></tr>
+    <tr><td>Cellular (4G/LTE)</td><td>WAN</td><td>Supported as direct-connect device type for gateways</td></tr>
+    <tr><td>OCPP</td><td>EV Charging</td><td>Mentioned as supported industrial protocol via TuyaLink</td></tr>
+    <tr><td>MQTT (TuyaLink)</td><td>IoT Messaging</td><td>Device-to-cloud; TuyaLink JSON standard; QoS 0 and QoS 1; TLS 1.2</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION B: API INTEGRATION -->
+<h2>B. API Integration</h2>
+<p>Tuya's cloud API layer — branded <strong>OpenAPI</strong> or <strong>Cloud Development Platform</strong> — is a comprehensive RESTful API suite with supplementary MQTT and WebSocket channels. All API calls are authenticated using <strong>OAuth 2.0</strong> in two modes:</p>
+<ul>
+  <li><strong>Simple/implicit mode</strong> (grant_type=1) — the third-party cloud exchanges a <code>client_id</code> and <code>client_secret</code> directly for an access token; used for accessing project/device-level data.</li>
+  <li><strong>Authorization code mode</strong> (grant_type=2) — end users log in via QR code or password and authorise the third-party cloud to access their user data, resulting in an OAuth 2.0 authorization code exchanged for a token.</li>
+</ul>
+<p>Requests are signed using HMAC-SHA256. Regional API base URLs are: China (<code>openapi.tuyacn.com</code>), Americas (<code>openapi.tuyaus.com</code>), Europe (<code>openapi.tuyaeu.com</code>), India (<code>openapi.tuyain.com</code>), with additional nodes for Eastern America and Western Europe.</p>
+
+<h3>API Pricing</h3>
+<ul>
+  <li><strong>Trial Edition</strong> (free, individual/debug use only) — ~26,000 API calls/month</li>
+  <li><strong>Flagship Edition</strong> — ~224 million calls/month; $3.15/million overage (outside mainland China)</li>
+  <li><strong>Corporate Edition</strong> — ~426 million calls/month; $2.97/million overage (outside mainland China)</li>
+</ul>
+
+<h3>API Types</h3>
+<ul>
+  <li><strong>REST (HTTP/HTTPS):</strong> Primary API type; all device, home, scene, user, and service management endpoints</li>
+  <li><strong>MQTT (TuyaLink):</strong> Device-to-cloud protocol for device properties, actions, events, OTA, and topology management</li>
+  <li><strong>WebSocket:</strong> Used for persistent connections in MCP server integration and AI agent platform</li>
+  <li><strong>Message Subscription (AMQP-based push):</strong> Server-push for device status events (online/offline, property reports, name changes, bind events, automation external actions)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Endpoint / Category</th>
+      <th>Method</th>
+      <th>Endpoint Path</th>
+      <th>Capability</th>
+      <th>Rate Limit (calls/sec)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Get Access Token</td><td>GET</td><td><code>/v1.0/token?grant_type=1</code></td><td>Auth: obtain access token with client_id + secret</td><td>Not specified</td></tr>
+    <tr><td>2</td><td>Get Device Details</td><td>GET</td><td><code>/v1.0/devices/{device_id}</code></td><td>Read device info (name, category, online status, keys)</td><td>10</td></tr>
+    <tr><td>3</td><td>Get Device List (by user)</td><td>GET</td><td><code>/v1.0/users/{uid}/devices</code></td><td>Read all devices under a user</td><td>Not specified</td></tr>
+    <tr><td>4</td><td>Get Device List (project)</td><td>GET</td><td><code>/v1.0/devices</code></td><td>Read all devices in a project</td><td>Not specified</td></tr>
+    <tr><td>5</td><td>Delete Device</td><td>DELETE</td><td><code>/v1.0/devices/{device_id}</code></td><td>Write: remove a device by ID</td><td>Not specified</td></tr>
+    <tr><td>6</td><td>Modify Device Name</td><td>PUT</td><td><code>/v1.0/devices/{device_id}</code></td><td>Write: rename a device</td><td>Not specified</td></tr>
+    <tr><td>7</td><td>Get Device Logs</td><td>GET</td><td><code>/v1.0/devices/{device_id}/logs</code></td><td>Read device operation history</td><td>Not specified</td></tr>
+    <tr><td>8</td><td>Restore Factory Defaults</td><td>PUT</td><td><code>/v1.0/devices/{device_id}/reset-factory</code></td><td>Write: factory reset a device</td><td>Not specified</td></tr>
+    <tr><td>9</td><td>Query Sub-Devices</td><td>GET</td><td><code>/v1.0/devices/{deviceId}/sub-devices</code></td><td>Read: list devices under a gateway</td><td>Not specified</td></tr>
+    <tr><td>10</td><td>Send Device Property (control)</td><td>POST</td><td><code>/v2.0/cloud/thing/{device_id}/shadow/properties/issue</code></td><td>Write: send control instruction to device</td><td>4</td></tr>
+    <tr><td>11</td><td>Query Device Properties</td><td>GET</td><td><code>/v2.0/cloud/thing/{device_id}/shadow/properties</code></td><td>Read: get last reported device state</td><td>50</td></tr>
+    <tr><td>12</td><td>Send Device Actions</td><td>POST</td><td><code>/v2.0/cloud/thing/{device_id}/shadow/actions</code></td><td>Write: execute device actions</td><td>4</td></tr>
+    <tr><td>13</td><td>Query Device State</td><td>GET</td><td><code>/v2.0/cloud/thing/{device_id}/state</code></td><td>Read: get current device status</td><td>5</td></tr>
+    <tr><td>14</td><td>Get Device Firmware Info</td><td>GET</td><td><code>/v2.0/cloud/thing/{device_id}/firmware</code></td><td>Read: OTA firmware update availability</td><td>5</td></tr>
+    <tr><td>15</td><td>Query Things Data Model</td><td>GET</td><td><code>/v2.0/cloud/thing/{device_id}/model</code></td><td>Read: data model for device type</td><td>10</td></tr>
+    <tr><td>16</td><td>Query Scene List</td><td>GET</td><td><code>/v1.0/homes/{home_id}/scenes</code></td><td>Read: list tap-to-run scenes in a home</td><td>Not specified</td></tr>
+    <tr><td>17</td><td>Trigger Scene</td><td>POST</td><td><code>/v1.0/homes/{home_id}/scenes/{scene_id}/trigger</code></td><td>Write: execute a tap-to-run scene</td><td>Not specified</td></tr>
+    <tr><td>18</td><td>Add Scene</td><td>POST</td><td><code>/v1.0/homes/{home_id}/scenes</code></td><td>Write: create a new scene</td><td>Not specified</td></tr>
+    <tr><td>19</td><td>Add Automation Rule</td><td>POST</td><td><code>/v2.0/cloud/scene/rule</code></td><td>Write: create if-then automation rule</td><td>5</td></tr>
+    <tr><td>20</td><td>Query Automation Rules</td><td>GET</td><td><code>/v2.0/cloud/scene/rule</code></td><td>Read: list all automation/linkage rules</td><td>30</td></tr>
+    <tr><td>21</td><td>Trigger Scene (v2)</td><td>POST</td><td><code>/v2.0/cloud/scene/rule/{rule_id}/actions/trigger</code></td><td>Write: trigger a tap-to-run rule</td><td>10</td></tr>
+    <tr><td>22</td><td>Enable/Disable Automation</td><td>PUT</td><td><code>/v2.0/cloud/scene/rule/state</code></td><td>Write: toggle automation on/off</td><td>5</td></tr>
+    <tr><td>23</td><td>Create Space</td><td>POST</td><td><code>/v2.0/cloud/space/creation</code></td><td>Write: create a logical space/location</td><td>10</td></tr>
+    <tr><td>24</td><td>Create Device Group</td><td>POST</td><td><code>/v2.0/cloud/thing/group</code></td><td>Write: group multiple devices</td><td>2</td></tr>
+    <tr><td>25</td><td>Send Group Properties</td><td>POST</td><td><code>/v2.0/cloud/thing/group/properties</code></td><td>Write: control all devices in a group</td><td>4</td></tr>
+    <tr><td>26</td><td>Add Scheduled Task</td><td>POST</td><td><code>/v2.0/cloud/timer/device/{device_id}</code></td><td>Write: schedule device action</td><td>20</td></tr>
+    <tr><td>27</td><td>Home Management (add/edit/delete)</td><td>action-based</td><td><code>home.add</code>, <code>home.edit</code>, <code>home.delete</code></td><td>Write: manage home entities and rooms</td><td>Not specified</td></tr>
+    <tr><td>28</td><td>User Management</td><td>action-based</td><td><code>user.infos</code>, <code>user.password.login</code>, <code>user.refreshToken</code></td><td>Read/Write: user authentication and profile</td><td>Not specified</td></tr>
+  </tbody>
+</table>
+
+<h3>Message Subscription Events (server-push)</h3>
+<ul>
+  <li><code>statusReport</code> — Device reports data to cloud</li>
+  <li><code>online</code> / <code>offline</code> — Device connectivity changes</li>
+  <li><code>nameUpdate</code> — Device renamed</li>
+  <li><code>delete</code> — Device removed</li>
+  <li><code>bindUser</code> — Device bound to user</li>
+  <li><code>upgradeStatus</code> — OTA update status change</li>
+  <li><code>automationExternalAction</code> — Automation external action triggered</li>
+</ul>
+
+<hr>
+
+<!-- SECTION C: MCP INTEGRATION -->
+<h2>C. MCP Integration</h2>
+<p>Tuya has official, production-ready Model Context Protocol (MCP) support as of 2025. The <strong>AI Agent Development Platform</strong> fully integrates MCP server architecture, and an official <strong>tuya-mcp-sdk</strong> is published on GitHub (<a href="https://github.com/tuya/tuya-mcp-sdk" target="_blank">github.com/tuya/tuya-mcp-sdk</a>). MCP enables AI agents and LLMs to access Tuya IoT device data and control in real time, functioning as the "USB-C port for AI" — providing a standardised interface between LLM applications and Tuya's device management APIs and physical device ecosystem.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>MCP Server Available</td><td>✓ Official server on Tuya AI Agent Development Platform; also third-party <code>tuya-smart-home-mcp</code> server</td></tr>
+    <tr><td>Official SDK</td><td><code>tuya-mcp-sdk</code> on GitHub (<a href="https://github.com/tuya/tuya-mcp-sdk" target="_blank">github.com/tuya/tuya-mcp-sdk</a>); published 2025</td></tr>
+    <tr><td>SDK Languages</td><td>Python, Go, C#</td></tr>
+    <tr><td>SDK Capabilities</td><td>Connect custom MCP servers to Tuya Cloud; WebSocket-based real-time communication; secure authentication; error handling and retry</td></tr>
+    <tr><td>Architecture</td><td>MCP client-server over WebSocket; persistent bidirectional connection; five global data centres</td></tr>
+    <tr><td>MCP Management UI</td><td>Tuya Developer Platform → MCP Management page; query official MCP services; register custom MCP services</td></tr>
+    <tr><td>Add MCP to Agent</td><td>Via Agent Development Platform → My Agent → Develop → Skills Configuration → Add Tool (official or custom)</td></tr>
+    <tr><td>Debug Limitation</td><td>MCP tool debugging currently limited to China Data Centre</td></tr>
+    <tr><td>Supported LLMs (confirmed)</td><td>OpenAI (GPT), Claude (Anthropic), Gemini (Google), Amazon Nova, Doubao, Tongyi Qianwen (Alibaba), Kimi, Yuanbao</td></tr>
+    <tr><td>AI Features</td><td>Tuya.AI smart home butler; AI Agent Development Platform (3-step agent creation); Wukong AI hardware framework; voice/image/NLP integration</td></tr>
+    <tr><td>GitHub URL</td><td><a href="https://github.com/tuya/tuya-mcp-sdk" target="_blank">https://github.com/tuya/tuya-mcp-sdk</a></td></tr>
+    <tr><td>Docs URL</td><td><a href="https://developer.tuya.com/en/docs/iot/mcp-manage?id=Ketxzvb2s9ziq" target="_blank">developer.tuya.com/en/docs/iot/mcp-manage</a></td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION D: NO-CODE AUTOMATION -->
+<h2>D. No-Code Automation Integrations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Status</th>
+      <th>Integration Type</th>
+      <th>Triggers</th>
+      <th>Actions</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IFTTT</td>
+      <td>✓ Available</td>
+      <td>Official (Smart Life brand)</td>
+      <td>11</td>
+      <td>10 + 12 history queries</td>
+      <td>Via "Smart Life" service at ifttt.com/smartlife; polling every 5 min (Pro/Pro+) or 1 hr (Free). Triggers: device on/off, motion, sound, door sensor, person detected, leak, incorrect password, battery low, lock unlock. Actions: turn on/off, activate scene, set brightness, set colour, AC cool/heat/temp, fan oscillation.</td>
+    </tr>
+    <tr>
+      <td>Make (Integromat)</td>
+      <td>Partial</td>
+      <td>Community only</td>
+      <td>Not published</td>
+      <td>Not published</td>
+      <td>Community-contributed app by Philipp Weidenbach / MAXMEL Tech; not an official Tuya connector. Functional but unsupported. Alternative: use HTTP modules to call Tuya OpenAPI directly.</td>
+    </tr>
+    <tr>
+      <td>n8n</td>
+      <td>Partial</td>
+      <td>Community node + HTTP</td>
+      <td>Event-based (webhook/polling)</td>
+      <td>Device control, scene execution</td>
+      <td>No official n8n node. Community node available; supports device list, commands, scene execution, status read/write. HTTP Request node also viable with Tuya API credentials.</td>
+    </tr>
+    <tr>
+      <td>Node-RED</td>
+      <td>Partial</td>
+      <td>Community package</td>
+      <td>Polling / MQTT</td>
+      <td>Device control</td>
+      <td><code>node-red-contrib-tuya-devices</code> (npm) supports local and cloud Tuya device control; MQTT broker option available; IP auto-detection; device capability caching.</td>
+    </tr>
+    <tr>
+      <td>Home Assistant</td>
+      <td>✓ Official</td>
+      <td>Official stable integration</td>
+      <td>Device state change</td>
+      <td>Device control, scene trigger</td>
+      <td>Official integration from HA Core 2024.2+; set up via Smart Life / Tuya Smart app QR code; supports 50+ device categories; also Smart Life HACS beta integration; Python SDK backed.</td>
+    </tr>
+    <tr>
+      <td>Zapier</td>
+      <td>✗ Not available</td>
+      <td>None confirmed</td>
+      <td>—</td>
+      <td>—</td>
+      <td>No official or community Zapier integration found as of March 2026. IFTTT is the recommended alternative.</td>
+    </tr>
+    <tr>
+      <td>Microsoft Power Automate</td>
+      <td>✗ Not available</td>
+      <td>None confirmed</td>
+      <td>—</td>
+      <td>—</td>
+      <td>No Tuya or Smart Life connector found in Microsoft's Power Automate connector reference. Tuya has an Azure Marketplace listing and an Azure cloud partnership, but no Power Automate connector.</td>
+    </tr>
+    <tr>
+      <td>Apple Shortcuts / Siri</td>
+      <td>Partial</td>
+      <td>Via OEM App Advanced Edition</td>
+      <td>—</td>
+      <td>Voice commands</td>
+      <td>Siri integration available in OEM App Advanced Edition; also via Apple HomeKit/Matter path.</td>
+    </tr>
+    <tr>
+      <td>Google Home Routines</td>
+      <td>✓ Available</td>
+      <td>Via Matter / Google Home</td>
+      <td>Device state</td>
+      <td>Device control</td>
+      <td>Tuya-enabled devices can be added to Google Home via Matter; routine automation available in Google Home.</td>
+    </tr>
+    <tr>
+      <td>Amazon Alexa Routines</td>
+      <td>✓ Available</td>
+      <td>Via Alexa skill / Matter</td>
+      <td>Device state, voice</td>
+      <td>Device control</td>
+      <td>Official Alexa skill for Smart Life; Works With Alexa (WWA) certification path for OEM devices.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION E: MOBILE APP -->
+<h2>E. Mobile App</h2>
+<p>Tuya operates two distinct app offerings: the consumer-facing <strong>Smart Life</strong> all-in-one app (previously also called Tuya Smart), and the <strong>OEM App</strong> white-label builder for brand partners.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Smart Life (All-in-One) App</th>
+      <th>OEM App (White-Label)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>App Name</td><td>Tuya — Smart Life, Smart Living</td><td>Custom-branded (built on Smart Life SDK)</td></tr>
+    <tr><td>iOS</td><td>✓ App Store (ID: 1034649547)</td><td>✓ Published to App Store under brand's developer account</td></tr>
+    <tr><td>Android</td><td>✓ Google Play (com.tuya.smart)</td><td>✓ Google Play; also supports mainland China app stores</td></tr>
+    <tr><td>Cost to End User</td><td>Free (no subscription required)</td><td>Free to end user; developer pays for OEM App service</td></tr>
+    <tr><td>Device Categories</td><td>2,400+</td><td>Same as Smart Life (same underlying SDK)</td></tr>
+    <tr><td>Protocols Supported</td><td>Wi-Fi, Bluetooth/BLE, Bluetooth Mesh, Zigbee 3.0, Matter</td><td>Same</td></tr>
+    <tr><td>Key Features</td><td>Smart home control, device grouping, automated routines (time/weather/location/device-trigger), scene linkage, energy insights, home security monitoring, family sharing, push notifications, AI assistant ("Hey Tuya"), multi-language (50+), third-party voice control (Alexa, Google Assistant)</td><td>All Smart Life features plus custom branding, custom domain, custom theme/UI, Siri integration (Advanced Edition), OEM-specific miniApps, marketing tools, data analytics, App Mall / subscription services</td></tr>
+    <tr><td>Voice Control</td><td>Amazon Alexa, Google Assistant; Siri via HomeKit/Matter</td><td>Same; Siri via Advanced Edition OEM App</td></tr>
+    <tr><td>Automation</td><td>Yes — schedule, geofence, weather, device-trigger, cross-device scene linkage</td><td>Yes — same + custom miniApp automations</td></tr>
+    <tr><td>White-Label / OEM</td><td>No (standard consumer app)</td><td>Yes — full white-label: logo, theme, colour, features, domain, 50+ UI templates; no-code visual builder</td></tr>
+    <tr><td>OEM Editions</td><td>N/A</td><td>Basic Edition (standard features) / Advanced Edition (Siri, extended customisation)</td></tr>
+    <tr><td>Build Quota</td><td>N/A</td><td>10 builds/day, 30 builds/month per OEM App version</td></tr>
+    <tr><td>Multi-Language</td><td>Yes — Chinese, English, German, French, Japanese + others</td><td>Yes — 50+ languages, real-time localisation</td></tr>
+    <tr><td>AI Features</td><td>"Hey Tuya" AI assistant; conversational control; energy analysis; health and lifestyle tips</td><td>Same (configurable per OEM)</td></tr>
+    <tr><td>Family/Multi-User</td><td>Yes — home member sharing with permission levels</td><td>Yes</td></tr>
+    <tr><td>OTA Updates</td><td>Automatic, managed by Tuya R&amp;D team</td><td>Monthly releases; one-click upgrade</td></tr>
+    <tr><td>Documentation</td><td><a href="https://www.tuya.com/product/app-management/all-in-one-app" target="_blank">tuya.com/product/app-management/all-in-one-app</a></td><td><a href="https://developer.tuya.com/en/docs/iot/appautobuilding?id=K97dki9m38d8w" target="_blank">developer.tuya.com/en/docs/iot/appautobuilding</a></td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SOURCES -->
+<h2>Sources</h2>
+<table class="sources-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Source</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Tuya Developer Docs — Main Index</td><td><a href="https://developer.tuya.com/en/docs/iot" target="_blank">https://developer.tuya.com/en/docs/iot</a></td></tr>
+    <tr><td>2</td><td>Tuya Developer Platform Homepage</td><td><a href="https://developer.tuya.com/en/" target="_blank">https://developer.tuya.com/en/</a></td></tr>
+    <tr><td>3</td><td>Tuya Inc. Corporate Overview (NYSE/HKEX listing description)</td><td><a href="https://developer.tuya.com/en/docs/iot" target="_blank">https://developer.tuya.com/en/docs/iot</a></td></tr>
+    <tr><td>4</td><td>Integration with Building Automation Devices</td><td><a href="https://developer.tuya.com/en/docs/iot/building_automation_system?id=Kbds31im3yma8" target="_blank">https://developer.tuya.com/en/docs/iot/building_automation_system?id=Kbds31im3yma8</a></td></tr>
+    <tr><td>5</td><td>Smart Building — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/building?id=Kb1zlpon1qpeb" target="_blank">https://developer.tuya.com/en/docs/iot/building?id=Kb1zlpon1qpeb</a></td></tr>
+    <tr><td>6</td><td>IoT Private Cloud — Tuya Developer</td><td><a href="https://developer.tuya.com/en/private-cloud" target="_blank">https://developer.tuya.com/en/private-cloud</a></td></tr>
+    <tr><td>7</td><td>Cube Hybrid Cloud — Tuya Smart</td><td><a href="https://www.tuya.com/solution/cube-hybrid-cloud" target="_blank">https://www.tuya.com/solution/cube-hybrid-cloud</a></td></tr>
+    <tr><td>8</td><td>IoT Edge Gateway — Tuya Developer</td><td><a href="https://developer.tuya.com/en/iot-edge-gateway" target="_blank">https://developer.tuya.com/en/iot-edge-gateway</a></td></tr>
+    <tr><td>9</td><td>Authentication Method (OAuth 2.0) — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/authentication-method?id=Ka49gbaxjygox" target="_blank">https://developer.tuya.com/en/docs/iot/authentication-method?id=Ka49gbaxjygox</a></td></tr>
+    <tr><td>10</td><td>Device Management API Reference — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/cloud/device-management?id=K9g6rfntdz78a" target="_blank">https://developer.tuya.com/en/docs/cloud/device-management?id=K9g6rfntdz78a</a></td></tr>
+    <tr><td>11</td><td>Device Control API Reference — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/cloud/device-control?id=Kcp2kw3cukaiz" target="_blank">https://developer.tuya.com/en/docs/cloud/device-control?id=Kcp2kw3cukaiz</a></td></tr>
+    <tr><td>12</td><td>Scene Automation API Reference — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/cloud/scene-automation?id=Kaiuogcm9rdyb" target="_blank">https://developer.tuya.com/en/docs/cloud/scene-automation?id=Kaiuogcm9rdyb</a></td></tr>
+    <tr><td>13</td><td>Scene Linkage Rules API Reference — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/cloud/scene-linkage-rules?id=Kcp2l456jxtse" target="_blank">https://developer.tuya.com/en/docs/cloud/scene-linkage-rules?id=Kcp2l456jxtse</a></td></tr>
+    <tr><td>14</td><td>Limits on API Request Frequency — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/frequency-control?id=Kcojz2r2dg1f6" target="_blank">https://developer.tuya.com/en/docs/iot/frequency-control?id=Kcojz2r2dg1f6</a></td></tr>
+    <tr><td>15</td><td>Pricing / Membership Service — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/membership-service?id=K9m8k45jwvg9j" target="_blank">https://developer.tuya.com/en/docs/iot/membership-service?id=K9m8k45jwvg9j</a></td></tr>
+    <tr><td>16</td><td>Smart Home APIs List — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/smart-home-api-list?id=Kbvws7zbb319y" target="_blank">https://developer.tuya.com/en/docs/iot/smart-home-api-list?id=Kbvws7zbb319y</a></td></tr>
+    <tr><td>17</td><td>Smart Home Management API — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/house?id=K9wj2qbmwnb64" target="_blank">https://developer.tuya.com/en/docs/iot/house?id=K9wj2qbmwnb64</a></td></tr>
+    <tr><td>18</td><td>MCP Management — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/mcp-manage?id=Ketxzvb2s9ziq" target="_blank">https://developer.tuya.com/en/docs/iot/mcp-manage?id=Ketxzvb2s9ziq</a></td></tr>
+    <tr><td>19</td><td>tuya-mcp-sdk — GitHub (official Tuya repository)</td><td><a href="https://github.com/tuya/tuya-mcp-sdk" target="_blank">https://github.com/tuya/tuya-mcp-sdk</a></td></tr>
+    <tr><td>20</td><td>MQTT Standard Protocol (TuyaLink) — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/MQTT-protocol?id=Kb65nphxrj8f1" target="_blank">https://developer.tuya.com/en/docs/iot/MQTT-protocol?id=Kb65nphxrj8f1</a></td></tr>
+    <tr><td>21</td><td>Smart Life Integrations — IFTTT</td><td><a href="https://ifttt.com/smartlife" target="_blank">https://ifttt.com/smartlife</a></td></tr>
+    <tr><td>22</td><td>Tuya Community Integration — Make.com</td><td><a href="https://www.make.com/en/integrations/tuya-community" target="_blank">https://www.make.com/en/integrations/tuya-community</a></td></tr>
+    <tr><td>23</td><td>node-red-contrib-tuya-devices — Node-RED Flow Library</td><td><a href="https://flows.nodered.org/node/node-red-contrib-tuya-devices" target="_blank">https://flows.nodered.org/node/node-red-contrib-tuya-devices</a></td></tr>
+    <tr><td>24</td><td>n8n Tuya Integration Tutorial (third-party) — ZedIoT</td><td><a href="https://zediot.com/blog/n8n-tuya-integration/" target="_blank">https://zediot.com/blog/n8n-tuya-integration/</a></td></tr>
+    <tr><td>25</td><td>Home Assistant — Official Tuya Integration</td><td><a href="https://www.home-assistant.io/integrations/tuya/" target="_blank">https://www.home-assistant.io/integrations/tuya/</a></td></tr>
+    <tr><td>26</td><td>Set Up Tuya Integration (Stable) in Home Assistant — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/Home-assistant-tuya-intergration?id=Kb0eqjig0utdd" target="_blank">https://developer.tuya.com/en/docs/iot/Home-assistant-tuya-intergration?id=Kb0eqjig0utdd</a></td></tr>
+    <tr><td>27</td><td>Interoperability of Matter Products — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot-device-dev/interoperability?id=Kd307fzbmfsij" target="_blank">https://developer.tuya.com/en/docs/iot-device-dev/interoperability?id=Kd307fzbmfsij</a></td></tr>
+    <tr><td>28</td><td>Supported Matter Device Types — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot-device-dev/Matter_Product_Feature_List?id=Kd2wjfpuhgmrw" target="_blank">https://developer.tuya.com/en/docs/iot-device-dev/Matter_Product_Feature_List?id=Kd2wjfpuhgmrw</a></td></tr>
+    <tr><td>29</td><td>Amazon Alexa Voice Solutions — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/voice-products?id=Kafe65xvvbpdm" target="_blank">https://developer.tuya.com/en/docs/iot/voice-products?id=Kafe65xvvbpdm</a></td></tr>
+    <tr><td>30</td><td>Create OEM App for SmartLife — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/appautobuilding?id=K97dki9m38d8w" target="_blank">https://developer.tuya.com/en/docs/iot/appautobuilding?id=K97dki9m38d8w</a></td></tr>
+    <tr><td>31</td><td>OEM App Platform — Tuya Smart</td><td><a href="https://www.tuya.com/platform/appdev/oemapp" target="_blank">https://www.tuya.com/platform/appdev/oemapp</a></td></tr>
+    <tr><td>32</td><td>All-in-One App (Smart Life) — Tuya Smart</td><td><a href="https://www.tuya.com/product/app-management/all-in-one-app" target="_blank">https://www.tuya.com/product/app-management/all-in-one-app</a></td></tr>
+    <tr><td>33</td><td>Smart Life App — Apple App Store</td><td><a href="https://apps.apple.com/us/app/tuya-smart-life-smart-living/id1034649547" target="_blank">https://apps.apple.com/us/app/tuya-smart-life-smart-living/id1034649547</a></td></tr>
+    <tr><td>34</td><td>Smart Life App — Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.tuya.smart" target="_blank">https://play.google.com/store/apps/details?id=com.tuya.smart</a></td></tr>
+    <tr><td>35</td><td>Tuya Officially Announces Support for Matter</td><td><a href="https://www.tuya.com/news-details/tuya-officially-announces-support-for-matter-smart-home-standard-Kb8lf5he7pq9g" target="_blank">https://www.tuya.com/news-details/tuya-officially-announces-support-for-matter-smart-home-standard-Kb8lf5he7pq9g</a></td></tr>
+    <tr><td>36</td><td>Tuya Smart Showcases AI Innovations at CES 2025</td><td><a href="https://www.tuya.com/news-details/tuya-smart-showcases-popular-ai-innovations-at-ces-2025-defining-a-new-standard-for-future-smart-living-Ke9j442bgkqon" target="_blank">https://www.tuya.com/news-details/tuya-smart-showcases-popular-ai-innovations-at-ces-2025-defining-a-new-standard-for-future-smart-living-Ke9j442bgkqon</a></td></tr>
+    <tr><td>37</td><td>Tuya Case Study — Google Cloud</td><td><a href="https://cloud.google.com/customers/tuya" target="_blank">https://cloud.google.com/customers/tuya</a></td></tr>
+    <tr><td>38</td><td>Tuya IoT Core on Azure — Microsoft Marketplace</td><td><a href="https://marketplace.microsoft.com/en-us/product/saas/tuyaglobalinc1637300638584.tuya-smarthomesolution" target="_blank">https://marketplace.microsoft.com/en-us/product/saas/tuyaglobalinc1637300638584.tuya-smarthomesolution</a></td></tr>
+    <tr><td>39</td><td>Wireless Zigbee Gateway — Tuya Developer</td><td><a href="https://developer.tuya.com/en/docs/iot/Zigbee_Wi-Fi_gateway?id=Kbg4vdcz4bbpr" target="_blank">https://developer.tuya.com/en/docs/iot/Zigbee_Wi-Fi_gateway?id=Kbg4vdcz4bbpr</a></td></tr>
+    <tr><td>40</td><td>tuya-connector (message subscription SDK) — GitHub</td><td><a href="https://github.com/tuya/tuya-connector" target="_blank">https://github.com/tuya/tuya-connector</a></td></tr>
+    <tr><td>41</td><td>Tuya Smart Home MCP — MCPCursor</td><td><a href="https://mcpcursor.com/server/tuya-smart-home-mcp" target="_blank">https://mcpcursor.com/server/tuya-smart-home-mcp</a></td></tr>
+    <tr><td>42</td><td>tuya-home-assistant (official HA integration) — GitHub</td><td><a href="https://github.com/tuya/tuya-home-assistant" target="_blank">https://github.com/tuya/tuya-home-assistant</a></td></tr>
+  </tbody>
+</table>
+
+<hr>
+<p style="font-size:8.5pt; color:#888; text-align:center; margin-top:30px;">
+  Prepared by Meld Strategies Pty Ltd &nbsp;·&nbsp; 31 March 2026 &nbsp;·&nbsp; Internal use only
+</p>
+
+</body>
+</html>

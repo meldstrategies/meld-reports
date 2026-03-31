@@ -1,0 +1,41 @@
+[
+  {
+    "id": "salto-space-integration-report",
+    "title": "Integration Capability Report \u2014 Salto Space",
+    "type": "Integration",
+    "topic": "Access Control Research",
+    "audience": "Internal",
+    "date": "2026-03-30",
+    "filename": "salto-space-integration-report.html",
+    "drive_file_id": "13fpAd9zDAZmpuGUmojmnAwbNnNkh1tzT",
+    "drive_view_link": "reports/salto-space-integration-report-gate.html",
+    "gdoc_link": "https://drive.google.com/file/d/13fpAd9zDAZmpuGUmojmnAwbNnNkh1tzT/view?usp=drivesdk",
+    "pdf_link": "https://drive.google.com/file/d/1WATuDRcn9lzdzZXduKX03L4C34ZPGas5/view?usp=drivesdk"
+  },
+  {
+    "id": "starrez-integration-report",
+    "title": "Integration Capability Report \u2014 StarRez",
+    "type": "Integration",
+    "topic": "Residential Management Systems",
+    "audience": "Internal",
+    "date": "2026-03-31",
+    "filename": "starrez-integration-report.html",
+    "drive_file_id": "1bfxUyZ5zEtMG5KDjUrDKZOxvUdA3FkBV",
+    "drive_view_link": "reports/starrez-integration-report-gate.html",
+    "gdoc_link": "https://drive.google.com/file/d/1bfxUyZ5zEtMG5KDjUrDKZOxvUdA3FkBV/view?usp=drivesdk",
+    "pdf_link": "https://drive.google.com/file/d/1Py9xSQCPIwAIbTKMuIZ38b00raQs1-RG/view?usp=drivesdk"
+  },
+  {
+    "id": "tuya-integration-report",
+    "title": "Integration Capability Report \u2014 Tuya Development Platform",
+    "type": "Integration",
+    "topic": "IoT Platform Research",
+    "audience": "Internal",
+    "date": "2026-03-31",
+    "filename": "tuya-integration-report.html",
+    "drive_file_id": "1ycvswAv4xi7DaT5rQxIJRZgmAA8Piojb",
+    "drive_view_link": "reports/tuya-integration-report-gate.html",
+    "gdoc_link": "https://drive.google.com/file/d/1ycvswAv4xi7DaT5rQxIJRZgmAA8Piojb/view?usp=drivesdk",
+    "pdf_link": "https://drive.google.com/file/d/1yaSD_OELhplq4e1TtIx7qky2ywBXebu1/view?usp=drivesdk"
+  }
+]

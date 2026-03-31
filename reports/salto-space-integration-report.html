@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Integration Capability Report — Salto Space</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Quicksand', Calibri, sans-serif;
+    font-size: 11pt;
+    color: #000000;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  /* Cover */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 20px 40px 30px;
+      margin-bottom: 10px;
+    }
+    .cover-logo {
+      align-self: flex-end;
+      width: 160px;
+      margin-bottom: 16px;
+    }
+    .cover h1 {
+      font-size: 26pt;
+      font-weight: 700;
+      color: #71BF44;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .cover .subtitle {
+      font-size: 14pt;
+      color: #555555;
+      margin-bottom: 20px;
+    }
+    .cover .meta {
+      font-size: 10pt;
+      color: #888;
+      line-height: 1.8;
+    }
+
+  /* ── Page wrapper ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 72px 64px;
+  }
+
+  /* ── Section headings ── */
+  h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #71BF44;
+    margin: 40px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #D0E8C5;
+  }
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 28px 0 10px;
+  }
+  h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 18px 0 6px;
+  }
+
+  /* ── Body text ── */
+  p { margin-bottom: 12px; }
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 4px; }
+  a { color: #71BF44; }
+
+  /* ── Executive Summary box ── */
+  .exec-summary {
+    background: #F2FAF0;
+    border-left: 5px solid #71BF44;
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    border-radius: 4px;
+  }
+  .exec-summary p { margin-bottom: 8px; }
+  .exec-summary p:last-child { margin-bottom: 0; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 24px;
+    font-size: 10pt;
+  }
+  thead tr {
+    background: #E1E1E1;
+    color: #000;
+  }
+  th {
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid #cccccc;
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #cccccc;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: #F2FAF0; }
+  tbody tr:nth-child(odd)  { background: #ffffff; }
+
+  /* ── Section divider ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid #D0E8C5;
+    margin: 36px 0;
+  }
+
+  /* ── Footer ── */
+  .report-footer {
+    margin-top: 60px;
+    padding-top: 16px;
+    border-top: 2px solid #D0E8C5;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: #888;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .badge-yes  { background: #d4edda; color: #155724; }
+  .badge-no   { background: #f8d7da; color: #721c24; }
+  .badge-partial { background: #fff3cd; color: #856404; }
+
+  /* ── Note block ── */
+  .note {
+    font-size: 9.5pt;
+    color: #555;
+    font-style: italic;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+
+  @media print {
+    .cover { page-break-after: always; }
+    h1 { page-break-before: auto; }
+  }
+  @media print {
+    .cover { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<!-- MELD DOWNLOAD BAR -->
+<div id="meld-download-bar" style="
+  position: sticky; top: 0; z-index: 9999;
+  background: #71BF44; color: #ffffff;
+  font-family: 'Quicksand', Calibri, sans-serif;
+  font-size: 10pt; font-weight: 600;
+  display: flex; align-items: center;
+  gap: 12px; padding: 8px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+">
+  <a href="https://www.perplexity.ai/computer/a/meld-reports-portal-1.R3ItBYRWGDphlbcgDgvA" onclick="if(window.history.length>1){window.history.back();return false;}" target="_top" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;display:flex;align-items:center;gap:6px;">🏠 Reports Home</a>
+  <div style="flex:1;"></div>
+  <span style="opacity: 0.9; font-weight: 400;">Download this report:</span>
+  <a href="https://drive.google.com/file/d/13fpAd9zDAZmpuGUmojmnAwbNnNkh1tzT/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">📄 Google Doc</a>
+  <a href="https://drive.google.com/file/d/1WATuDRcn9lzdzZXduKX03L4C34ZPGas5/view?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">⬇ PDF</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════ -->
+<div class="cover">
+  <img class="cover-logo" src="data:image/png;base64,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" alt="Meld Strategies">
+  <h1>Integration Capability Report</h1>
+  <div class="subtitle"><strong>Salto Space — Access Control Platform</strong></div>
+  <div class="meta">
+    <strong>Vendor:</strong> SALTO Systems<br>
+    <strong>Date:</strong> 30 March 2026<br>
+    <strong>Prepared by:</strong> Meld Strategies
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     REPORT BODY
+══════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- ── 1. EXECUTIVE SUMMARY ── -->
+  <h1>Executive Summary</h1>
+  <div class="exec-summary">
+    <p>This report documents the integration capabilities of <strong>Salto Space</strong>, SALTO Systems' on-premise access control platform, as researched for Meld Strategies on 30 March 2026. The research draws on SALTO's official developer portal, support documentation, and certified technology partner resources.</p>
+    <p>Salto Space offers a proprietary integration framework centred on the <strong>SALTO Host Interface Protocol (SHIP)</strong>, which supports bidirectional data exchange with CCTV, fire alarm, building automation, and time-and-attendance systems. A dedicated <strong>Hospitality REST API</strong> (v6.10+) enables Apple Wallet digital key management for hospitality environments. Native integrations exist with leading physical security and PSIM platforms including Genetec Security Center, LenelS2 OnGuard, Johnson Controls C•CURE 9000, Siemens SiPass, and ICT Protege GX.</p>
+    <p>No MCP (Model Context Protocol) server or direct no-code automation connectors (Zapier/Make) were identified for Salto Space. The platform is on-premise by design, and third-party cloud integrations are facilitated via the Seam API bridge. Mobile access is supported through the <strong>Salto JustIN Mobile App</strong> on iOS and Android.</p>
+    <p><strong>Recommended next steps:</strong> Engage SALTO's technical team to obtain the full SHIP specification (NDA required) and evaluate the Seam API bridge as a pathway to cloud-based access control integration for future smart building projects.</p>
+  </div>
+
+  <!-- ── 2. SYSTEM OVERVIEW ── -->
+  <h1>System Overview</h1>
+  <p>Salto Space (also referred to as ProAccess SPACE) is SALTO Systems' <strong>on-premise access control management platform</strong>. It is an industry-leading smart access control solution built around SALTO's proprietary SVN (SALTO Virtual Network) data-on-card technology, enabling wire-free, keyless electronic locking across up to 64,000 doors and 4,000,000 users. The platform manages access-time zones, audit trails, cardholder permissions, visitor management, lift/elevator access, and locker control through a web-based interface.</p>
+  <p>Salto Space is deployed locally on Windows-based server hardware and operates over standard Ethernet IP networks. It is distinguished from SALTO's cloud-based platform (Salto KS) by its emphasis on <strong>offline resilience</strong>, <strong>compliance-grade audit trails</strong>, and <strong>on-premise data sovereignty</strong> — making it well-suited to regulated environments such as healthcare, education, government, and large commercial office projects. The platform supports both offline (data-on-card SVN) and online (BLUEnet wireless) lock architectures, as well as credentials spanning RFID, NFC, BLE, and mobile keys.</p>
+
+  <hr class="section-divider"/>
+
+  <!-- ── 3. BUILDING TECHNOLOGY RELEVANCE ── -->
+  <h1>Building Technology Relevance</h1>
+  <p>Salto Space is a core access control system directly relevant to BMS/BAS, PSIM, and smart building integration contexts. It supports building automation system (BAS) integration via a licensed BAS protocol module, and SHIP protocol integration with CCTV, fire alarm, and time-and-attendance platforms. It is a standard access control specification item for commercial office, hospitality, healthcare, education, and mixed-use developments in the Australian market.</p>
+
+  <hr class="section-divider"/>
+
+  <!-- ── 4. INTEGRATION SUMMARY ── -->
+  <h1>Integration Summary</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Integration Type</th>
+        <th>Available</th>
+        <th>Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Native Integrations</td>
+        <td><span class="badge badge-yes">Yes</span></td>
+        <td>Certified integrations with major PSIM, CCTV, and BMS platforms via SHIP protocol and SVN plugin</td>
+      </tr>
+      <tr>
+        <td>API</td>
+        <td><span class="badge badge-yes">Yes</span></td>
+        <td>SHIP proprietary protocol (TCP/IP, HTTP/S) for broad integration; REST API (Hospitality, v6.10+) for Apple Wallet key management</td>
+      </tr>
+      <tr>
+        <td>MCP</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>No MCP server identified at time of report</td>
+      </tr>
+      <tr>
+        <td>No-Code Automation</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>No native Zapier, Make, n8n, or Power Automate connectors identified for Salto Space (on-premise). Salto KS (cloud) has broader automation support</td>
+      </tr>
+      <tr>
+        <td>Mobile App</td>
+        <td><span class="badge badge-yes">Yes</span></td>
+        <td>Salto JustIN Mobile App — iOS and Android; mobile key credential management</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <!-- ── A. NATIVE INTEGRATIONS ── -->
+  <h1>A. Native Integrations</h1>
+  <p>Salto Space integrates with third-party platforms primarily through the proprietary <strong>SALTO Host Interface Protocol (SHIP)</strong>, the <strong>SALTO Virtual Network (SVN) plugin</strong>, and a licensed <strong>BAS (Building Automation System) protocol module</strong>. SHIP enables bidirectional communication with security management, CCTV, fire alarm, time-and-attendance, and building management systems over standard TCP/IP. The BAS module supports integration with in-room control systems using wireless protocols including BLUEnet (Bluetooth LE), RFnet, and custom IEEE 802.15.4 (ZigBee) profiles. Third-party card readers are integrated via Wiegand interface (26, 32, 34, 35, or 37-bit formats).</p>
+  <p>Certified technology partners for Salto Space (as confirmed via official partner pages and integration documentation) include the following:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Integrated System / Platform</th>
+        <th>Integration Type</th>
+        <th>Direction</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://techdocs.genetec.com/r/en-US/SALTO-Virtual-Network-SVN-Plugin-Guide-3.2">Genetec Security Center</a></td>
+        <td>SVN Plugin (SHIP)</td>
+        <td>Both</td>
+        <td>SALTO Virtual Network plugin; manage SALTO doors, hotel rooms, lockers within Security Center; georeferenced map control</td>
+      </tr>
+      <tr>
+        <td><a href="https://buildings.honeywell.com/us/en/brands/our-brands/lenels2/security-solutions/third-party-integration/oaap-partners/salto-systems-salto-space">LenelS2 OnGuard</a></td>
+        <td>SHIP / API (BlueConn)</td>
+        <td>Both</td>
+        <td>Certified v8.1; requires LenelS2 OnGuard API licence (IPC-261-SLTO01-B); Space-OnGuard BlueConn connector available</td>
+      </tr>
+      <tr>
+        <td><a href="https://docs.johnsoncontrols.com/softwarehouse/api/khub/documents/kPRTUMe0an9HAT3x7e~cqA/content">Johnson Controls C•CURE 9000</a></td>
+        <td>SHIP (NMS Integration Driver)</td>
+        <td>Both</td>
+        <td>Supports offline and wireless locks; cardholder data synchronisation; bidirectional via SHIP over Ethernet; requires C•CURE v2.40+</td>
+      </tr>
+      <tr>
+        <td>Siemens SiPass</td>
+        <td>SHIP</td>
+        <td>Both</td>
+        <td>Listed as preferred technology partner; SiPass integrated platform for access, intrusion, and video</td>
+      </tr>
+      <tr>
+        <td><a href="https://ict.co/media/csgkruka/an-335_salto_ship_proaccess_space_integration_with_protege_gx.pdf">ICT Protege GX</a></td>
+        <td>SHIP</td>
+        <td>Both</td>
+        <td>High-level integration; single Protege GX site to single Salto SHIP server; card encoding from Protege GX interface; supports offline and wireless locks</td>
+      </tr>
+      <tr>
+        <td>Inncom / Honeywell RMS (RFnet)</td>
+        <td>BAS Protocol (RFnet)</td>
+        <td>Both</td>
+        <td>Licensed BAS module; TLS secured with authentication; in-room control and audit trail reporting</td>
+      </tr>
+      <tr>
+        <td>Inncom / Honeywell RMS (BLUEnet)</td>
+        <td>BAS Protocol (BLUEnet)</td>
+        <td>Both</td>
+        <td>BLUEnet Bluetooth LE wireless; real-time lock monitoring and remote actions when enabled</td>
+      </tr>
+      <tr>
+        <td>Minxon RMS</td>
+        <td>BAS Protocol</td>
+        <td>Both</td>
+        <td>Room management system integration via licensed BAS module</td>
+      </tr>
+      <tr>
+        <td>Custom RF (IEEE 802.15.4)</td>
+        <td>BAS Protocol (ZigBee)</td>
+        <td>Both</td>
+        <td>Configurable ZigBee cluster IDs and endpoints for custom room control system integration</td>
+      </tr>
+      <tr>
+        <td>MEWS PMS</td>
+        <td>SHIP / PMS Interface</td>
+        <td>Both</td>
+        <td>Hospitality PMS integration; supported as preferred technology partner</td>
+      </tr>
+      <tr>
+        <td>Duve</td>
+        <td>PMS / Guest Experience</td>
+        <td>Both</td>
+        <td>Guest experience platform; listed preferred technology partner</td>
+      </tr>
+      <tr>
+        <td>Flexipass</td>
+        <td>Mobile Key / Hospitality</td>
+        <td>Both</td>
+        <td>Digital key and mobile access management for hospitality</td>
+      </tr>
+      <tr>
+        <td>eLoxx Relaxx</td>
+        <td>SHIP (Relaxx / Spaxx connector)</td>
+        <td>Both</td>
+        <td>Space-Relaxx integration connector (Spaxx); locker management system integration</td>
+      </tr>
+      <tr>
+        <td>Third-party RFID Readers</td>
+        <td>Wiegand Interface</td>
+        <td>Read</td>
+        <td>Supports Wiegand 26/32/34/35/37-bit; configurable facility code and card number formats</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Note: BAS integration functionality and SHIP integration are both licence-dependent. SHIP requires execution of an NDA with SALTO prior to integration. Contact your SALTO representative for licensing details.</p>
+
+  <hr class="section-divider"/>
+
+  <!-- ── B. API INTEGRATION ── -->
+  <h1>B. API Integration</h1>
+  <p>Salto Space provides two API pathways for integration: the proprietary <strong>SALTO Host Interface Protocol (SHIP)</strong> and a purpose-built <strong>REST API (Hospitality API)</strong> introduced in Space v6.10.</p>
+
+  <h2>B1 — SALTO Host Interface Protocol (SHIP)</h2>
+  <p>SHIP is SALTO's proprietary bidirectional protocol for integrating Salto Space with third-party security and building management systems (CCTV, fire alarm, time and attendance, BMS). It operates over TCP/IP using either the Salto Transport Protocol (STP) or HTTP/S with Basic or Custom token authentication. SHIP access requires an NDA with SALTO and is licence-dependent. The SHIP specification document is available under NDA from SALTO technical support. Salto Space can operate as both a SHIP server (exposing data to a third-party host) and a SHIP client (pushing data to a third-party server).</p>
+
+  <p><strong>API Type:</strong> Proprietary SHIP (TCP/IP — STP or HTTP/S)<br/>
+  <strong>Authentication:</strong> None / HTTP Basic / Custom Token (API key)<br/>
+  <strong>Documentation URL:</strong> Available under NDA from SALTO technical support — <a href="https://support.saltosystems.com/space/user-guide/operator/general-options/ship/">support.saltosystems.com/space/…/ship/</a></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Function / Data Point</th>
+        <th>Category</th>
+        <th>Read</th>
+        <th>Write</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Access event / audit trail</td>
+        <td>Events</td>
+        <td>✓</td>
+        <td></td>
+        <td>Door access events, denied access, battery low alerts</td>
+      </tr>
+      <tr>
+        <td>User / cardholder data</td>
+        <td>User Management</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>Create, update, delete users; assign access levels</td>
+      </tr>
+      <tr>
+        <td>Door / lock commands</td>
+        <td>Control</td>
+        <td></td>
+        <td>✓</td>
+        <td>Open, Emergency Open, Emergency Close, Cancel Emergency</td>
+      </tr>
+      <tr>
+        <td>Lock status monitoring</td>
+        <td>Status</td>
+        <td>✓</td>
+        <td></td>
+        <td>Real-time door status for wireless online locks (BLUEnet)</td>
+      </tr>
+      <tr>
+        <td>Battery status</td>
+        <td>Maintenance</td>
+        <td>✓</td>
+        <td></td>
+        <td>Low battery alerts via events; real-time for wireless locks</td>
+      </tr>
+      <tr>
+        <td>Scheduled unlock / lockdown</td>
+        <td>Scheduling</td>
+        <td></td>
+        <td>✓</td>
+        <td>Schedule-based and event-triggered lock actions</td>
+      </tr>
+      <tr>
+        <td>Credential management</td>
+        <td>Credentials</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>Card and mobile key issuance, cancellation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>B2 — Hospitality REST API</h2>
+  <p>From Space v6.10+, a RESTful HTTP endpoint is available for hospitality management system integration, specifically for managing Apple Wallet digital room keys. This API is designed for hotel environments where a credential manager (e.g. Duve, Flexipass, MEWS) communicates with Salto Space to issue, manage, and revoke guest wallet keys. Authentication is via Bearer token (issued by SALTO). The API is documented on the SALTO Developer Portal with an OpenAPI (YAML) specification available for download. This API is licence-dependent (Apple Wallet key functionality requires a separate licence).</p>
+
+  <p><strong>API Type:</strong> RESTful HTTP (OpenAPI/YAML specification available)<br/>
+  <strong>Authentication:</strong> Bearer Token (issued by SALTO)<br/>
+  <strong>Documentation URL:</strong> <a href="https://developer.saltosystems.com/space/hospitality-api/">developer.saltosystems.com/space/hospitality-api/</a></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Endpoint / Operation</th>
+        <th>Category</th>
+        <th>Read</th>
+        <th>Write</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Room check-in</td>
+        <td>Guest Management</td>
+        <td></td>
+        <td>✓</td>
+        <td>Creates room access period; invalidates previous keys</td>
+      </tr>
+      <tr>
+        <td>Room check-out</td>
+        <td>Guest Management</td>
+        <td></td>
+        <td>✓</td>
+        <td>Removes all keys; invalidates room access</td>
+      </tr>
+      <tr>
+        <td>Create Apple Wallet key</td>
+        <td>Credentials</td>
+        <td></td>
+        <td>✓</td>
+        <td>Generates digital room key for specific room and time period</td>
+      </tr>
+      <tr>
+        <td>List room keys</td>
+        <td>Credentials</td>
+        <td>✓</td>
+        <td></td>
+        <td>Returns list of active keys for a room</td>
+      </tr>
+      <tr>
+        <td>Retrieve room key</td>
+        <td>Credentials</td>
+        <td>✓</td>
+        <td></td>
+        <td>Returns details of a specific key</td>
+      </tr>
+      <tr>
+        <td>Delete room key</td>
+        <td>Credentials</td>
+        <td></td>
+        <td>✓</td>
+        <td>Revokes a specific Apple Wallet key</td>
+      </tr>
+      <tr>
+        <td>Generate provision token</td>
+        <td>Credentials</td>
+        <td></td>
+        <td>✓</td>
+        <td>Time-limited token for wallet credential retrieval</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Note: The Hospitality API supports Apple Wallet keys only. Physical card credentials and staff keys are not managed through this API. Integration requires network configuration to allow external requests from the credential manager to the on-premise Space server's public IP or domain.</p>
+
+  <h2>B3 — Seam API Bridge (Third-Party)</h2>
+  <p>For organisations wishing to integrate Salto Space with cloud-based platforms, the <strong>Seam API</strong> (third-party) provides a bridge via the Seam Bridge software component. Seam Bridge is installed on the same Windows computer running Salto Space and connects to the Seam cloud platform, exposing access control management capabilities via Seam's unified API. This enables access system user management, access group assignment, entrance monitoring, and credential management (key cards and mobile keys) through a cloud-hosted RESTful API.</p>
+  <p><strong>Documentation:</strong> <a href="https://docs.seam.co/latest/device-and-system-integration-guides/salto-proaccess-space-access-system">docs.seam.co — Salto ProAccess Space</a></p>
+
+  <hr class="section-divider"/>
+
+  <!-- ── C. MCP INTEGRATION ── -->
+  <h1>C. MCP Integration</h1>
+  <p>No MCP (Model Context Protocol) server has been identified for Salto Space at the time of this report. SALTO Systems has not published an MCP server for either Salto Space or Salto KS. As the protocol is relatively new and primarily adopted by cloud-native platforms, this is not unexpected for an on-premise access control system of this type.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>MCP Detail</th>
+        <th>Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MCP Server Available</td>
+        <td>No — not identified at time of report</td>
+      </tr>
+      <tr>
+        <td>MCP Server URL / Repo</td>
+        <td>Not found</td>
+      </tr>
+      <tr>
+        <td>Compatible LLM Hosts</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td>Exposed Capabilities</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td>Notes</td>
+        <td>The Seam API bridge (see Section B3) could theoretically be paired with an MCP wrapper by a third-party developer, but no such implementation has been identified</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <!-- ── D. NO-CODE AUTOMATION ── -->
+  <h1>D. No-Code Automation Integrations</h1>
+  <p>No native no-code automation integrations (Zapier, Make, n8n, Power Automate) have been identified for <strong>Salto Space</strong> (the on-premise platform). This is consistent with Salto Space's on-premise, network-isolated architecture. SALTO's cloud platform, <strong>Salto KS</strong>, does support broader integration with cloud-first tools and is designed for organisations requiring automation and multi-site scalability. If no-code automation is a project requirement, the Seam API bridge may provide an indirect pathway, subject to Seam's own Zapier/Make connector availability.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Available</th>
+        <th>Triggers</th>
+        <th>Actions</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Zapier</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>No Salto Space connector identified on Zapier</td>
+      </tr>
+      <tr>
+        <td>Make (Integromat)</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>No Salto Space module identified</td>
+      </tr>
+      <tr>
+        <td>n8n</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>No community node identified for Salto Space</td>
+      </tr>
+      <tr>
+        <td>Power Automate</td>
+        <td><span class="badge badge-no">No</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>No certified connector identified</td>
+      </tr>
+      <tr>
+        <td>Seam API (indirect)</td>
+        <td><span class="badge badge-partial">Indirect</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td>Third-party bridge; may enable automation workflows if Seam supports no-code connectors</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <!-- ── E. MOBILE APP ── -->
+  <h1>E. Mobile App</h1>
+  <p>SALTO provides the <strong>JustIN Mobile App</strong> as the mobile key solution for Salto Space environments. The app allows users to use their smartphone as a digital access credential, replacing physical key cards. JustIN Mobile operates over Bluetooth Low Energy (BLE) and supports both near detection mode (up to 30 cm) and far opening mode (up to 15 m) at compatible online readers. Keys are assigned to user phone numbers by Space system administrators and distributed securely. The app also includes a JustIN Mobile SDK for third-party integrations.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Detail</th>
+        <th>Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>App Available</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>iOS App</td>
+        <td>Yes — <a href="https://saltosystems.com/en/solutions/salto-justin-mobile-app/">saltosystems.com/en/solutions/salto-justin-mobile-app/</a></td>
+      </tr>
+      <tr>
+        <td>Android App</td>
+        <td>Yes — available on Google Play</td>
+      </tr>
+      <tr>
+        <td>Key Capabilities</td>
+        <td>Mobile key credential (BLE); door access via smartphone; near detection (≤30 cm) and far opening (≤15 m); key lifecycle managed by Space admin</td>
+      </tr>
+      <tr>
+        <td>User Type</td>
+        <td>End user (cardholder / guest)</td>
+      </tr>
+      <tr>
+        <td>Notes</td>
+        <td>Requires key assigned to phone number by administrator; JustIN SDK available for third-party integration; Salto JustIN credentials are not supported by SHIP/ICT Protege GX integration (credential encoding only via physical card in that context)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider"/>
+
+  <!-- ── F. RECOMMENDATIONS ── -->
+  <h1>Recommendations &amp; Next Steps</h1>
+  <ol style="margin-left: 22px; line-height: 2.2;">
+    <li><strong>Obtain the SHIP specification under NDA</strong> — Engage SALTO's technical or channel team to execute the required NDA and obtain the full SHIP protocol specification for any project requiring integration with PSIM, CCTV, BMS, or time-and-attendance platforms.</li>
+    <li><strong>Confirm BAS licence requirements early</strong> — BAS integration (for in-room control systems such as Inncom/Honeywell) is licence-dependent; confirm this during design phase to avoid procurement delays.</li>
+    <li><strong>Evaluate Seam API for cloud integration projects</strong> — Where cloud-based access control management or API-driven integration is required, assess the Seam Bridge solution as a supported third-party pathway for Salto Space.</li>
+    <li><strong>Specify Salto Space v6.10+ for hospitality projects</strong> — Ensure the correct software version is specified for any hospitality project requiring Apple Wallet key integration via the Hospitality REST API.</li>
+    <li><strong>Consider Salto KS for multi-site or automation-heavy projects</strong> — Where no-code automation, cloud management, or Zapier/Make workflows are required, Salto KS (cloud) may be more appropriate and should be evaluated as an alternative.</li>
+  </ol>
+
+  <hr class="section-divider"/>
+
+  <!-- ── SOURCES ── -->
+  <h1>Sources</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Source Description</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SALTO Developer Portal — Space</td>
+        <td><a href="https://developer.saltosystems.com/space/">developer.saltosystems.com/space/</a></td>
+      </tr>
+      <tr>
+        <td>Salto Space Hospitality API</td>
+        <td><a href="https://developer.saltosystems.com/space/hospitality-api/">developer.saltosystems.com/space/hospitality-api/</a></td>
+      </tr>
+      <tr>
+        <td>SALTO Support — SHIP Tab Configuration</td>
+        <td><a href="https://support.saltosystems.com/space/user-guide/operator/general-options/ship/">support.saltosystems.com/space/.../ship/</a></td>
+      </tr>
+      <tr>
+        <td>SALTO Support — BAS Tab Configuration</td>
+        <td><a href="https://support.saltosystems.com/space/user-guide/operator/general-options/bas/">support.saltosystems.com/space/.../bas/</a></td>
+      </tr>
+      <tr>
+        <td>SALTO Support — Integrations Overview</td>
+        <td><a href="https://support.saltosystems.com/space/integrations/">support.saltosystems.com/space/integrations/</a></td>
+      </tr>
+      <tr>
+        <td>SALTO Support — Hospitality API Connectivity</td>
+        <td><a href="https://support.saltosystems.com/space/user-guide/systems-admin/hospitality-api/">support.saltosystems.com/space/.../hospitality-api/</a></td>
+      </tr>
+      <tr>
+        <td>SALTO Space Products &amp; Technology Partners</td>
+        <td><a href="https://saltosystems.com/en/solutions/salto-space/salto-space-products/">saltosystems.com/en/solutions/salto-space/salto-space-products/</a></td>
+      </tr>
+      <tr>
+        <td>LenelS2 OnGuard — SALTO Space Integration</td>
+        <td><a href="https://buildings.honeywell.com/us/en/brands/our-brands/lenels2/security-solutions/third-party-integration/oaap-partners/salto-systems-salto-space">buildings.honeywell.com — LenelS2 SALTO OAAP</a></td>
+      </tr>
+      <tr>
+        <td>Johnson Controls — C•CURE 9000 / SALTO Integration</td>
+        <td><a href="https://docs.johnsoncontrols.com/softwarehouse/api/khub/documents/kPRTUMe0an9HAT3x7e~cqA/content">docs.johnsoncontrols.com — C•CURE SALTO Datasheet</a></td>
+      </tr>
+      <tr>
+        <td>Genetec — SALTO Virtual Network SVN Plugin Guide</td>
+        <td><a href="https://techdocs.genetec.com/r/en-US/SALTO-Virtual-Network-SVN-Plugin-Guide-3.2/Integration-overview-for-the-SALTO-Virtual-Network-plugin">techdocs.genetec.com — SVN Plugin Guide</a></td>
+      </tr>
+      <tr>
+        <td>ICT Protege GX — SALTO SHIP Integration</td>
+        <td><a href="https://ict.co/media/csgkruka/an-335_salto_ship_proaccess_space_integration_with_protege_gx.pdf">ict.co — AN-335 Application Note (PDF)</a></td>
+      </tr>
+      <tr>
+        <td>Seam API — Salto ProAccess Space Guide</td>
+        <td><a href="https://docs.seam.co/latest/device-and-system-integration-guides/salto-proaccess-space-access-system">docs.seam.co — Salto ProAccess Space</a></td>
+      </tr>
+      <tr>
+        <td>SALTO JustIN Mobile App</td>
+        <td><a href="https://saltosystems.com/en/solutions/salto-justin-mobile-app/">saltosystems.com/en/solutions/salto-justin-mobile-app/</a></td>
+      </tr>
+      <tr>
+        <td>ProAccess SPACE Datasheet — ADI Global</td>
+        <td><a href="https://adiglobal.cz/iiWWW/docs.nsf/all/2D347922E972ED99C1257ED4006923D2/$FILE/Datasheet-PA_SPACE_EN.pdf">adiglobal.cz — ProAccess SPACE Datasheet (PDF)</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── FOOTER ── -->
+  <div class="report-footer">
+    <span>Meld Strategies — System Integration Research</span>
+    <span>Report Date: 30 March 2026 &nbsp;·&nbsp; Confidential</span>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
