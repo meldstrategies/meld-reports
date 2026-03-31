@@ -519,6 +519,7 @@
     const val = document.getElementById('passphrase').value;
     const hash = await sha256(val);
     if (hash === PASS_HASH) {
+      try { sessionStorage.setItem('meld_auth', 'true'); } catch(e) {}
       showPortal();
     } else {
       document.getElementById('auth-error').style.display = 'block';
@@ -533,10 +534,17 @@
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    // Auto-show portal if no auth gate needed (for Perplexity deployment)
-    if (!document.getElementById('auth-gate')) {
+    const gate = document.getElementById('auth-gate');
+    if (!gate) {
       populateTopics();
       render();
+    } else {
+      try {
+        if (sessionStorage.getItem('meld_auth') === 'true') {
+          showPortal();
+          return;
+        }
+      } catch(e) {}
     }
   });
 </script>
