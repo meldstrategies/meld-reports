@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Building Technology Assessment — 200 George Street, Sydney — Meld Strategies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Quicksand', Calibri, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* ── Gate overlay ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .gate-card {
+      background: #fff;
+      border: 1px solid #D0E8C5;
+      border-radius: 8px;
+      padding: 40px 48px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      max-width: 400px;
+      width: 90%;
+    }
+    .gate-card img { width: 140px; margin-bottom: 24px; }
+    .gate-card h2 {
+      font-size: 15pt;
+      font-weight: 700;
+      color: #71BF44;
+      margin-bottom: 6px;
+    }
+    .gate-card p {
+      font-size: 10pt;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .gate-card input[type="password"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #D0E8C5;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 11pt;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    .gate-card input[type="password"]:focus { border-color: #71BF44; }
+    .gate-card button {
+      width: 100%;
+      padding: 10px;
+      background: #71BF44;
+      color: #fff;
+      font-family: inherit;
+      font-size: 11pt;
+      font-weight: 700;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .gate-card button:hover { background: #5da836; }
+    .error { color: #c0392b; font-size: 10pt; margin-top: 8px; display: none; }
+    /* ── Report iframe ── */
+    #report-frame {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-card">
+    <img src="../assets/meld_logo.png" alt="Meld Strategies" onerror="this.style.display='none'" />
+    <h2>Meld Reports</h2>
+    <p>Smart Building Technology Assessment — 200 George Street, Sydney</p>
+    <input type="password" id="passphrase" placeholder="Enter passphrase" autocomplete="off" />
+    <button onclick="checkPass()">Access Report</button>
+    <div class="error" id="err">Incorrect passphrase. Please try again.</div>
+  </div>
+</div>
+
+<iframe id="report-frame" src="smart-building-technology-assessment-200-george-st.html" title="Smart Building Technology Assessment — 200 George Street, Sydney"></iframe>
+
+<script>
+  const HASH = '9dec22e7d4d12b6afa43bd7fd7ab54c5d9cf26d6b2bced62d11a67b6250d40c3';
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function checkPass() {
+    const val = document.getElementById('passphrase').value.trim();
+    const hash = await sha256(val);
+    if (hash === HASH) {
+      sessionStorage.setItem('meld_auth', '1');
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('report-frame').style.display = 'block';
+    } else {
+      document.getElementById('err').style.display = 'block';
+    }
+  }
+
+  document.getElementById('passphrase').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPass();
+  });
+
+  // Auto-unlock if already authenticated this session
+  if (sessionStorage.getItem('meld_auth') === '1') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('report-frame').style.display = 'block';
+  }
+</script>
+</body>
+</html>

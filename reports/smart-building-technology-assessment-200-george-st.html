@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Building Technology Assessment — Meld Strategies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Quicksand', Calibri, sans-serif;
+      font-size: 11pt; color: #000; background: #f0f0f0;
+    }
+    .page {
+      width: 210mm; margin: 24px auto; background: #fff;
+      padding: 2.5cm; box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      position: relative;
+    }
+    /* Cover */
+    .cover { padding-top: 20px; padding-bottom: 30px; margin-bottom: 20px; }
+    .cover-header { display: flex; justify-content: flex-end; margin-bottom: 40px; }
+    .cover-header img { width: 200px; height: 79px; object-fit: contain; }
+    .cover-title { font-size: 26pt; font-weight: 700; color: #71BF44; text-align: center; line-height: 1.2; margin-bottom: 14px; }
+    .cover-subtitle { font-size: 14pt; font-weight: 700; color: #555; text-align: center; margin-bottom: 24px; }
+    .cover-meta { font-size: 10pt; color: #888; text-align: center; line-height: 2; }
+    @media print { .cover { page-break-after: always; 
+      padding: 20px 0 30px;
+      margin-bottom: 20px;
+    } }
+    /* Content */
+    h1 { font-size: 20pt; font-weight: 700; color: #71BF44; margin: 0 0 20px; padding-bottom: 8px; border-bottom: 2px solid #D0E8C5; }
+    h2 { font-size: 14pt; font-weight: 700; color: #000; margin: 28px 0 10px; }
+    h3 { font-size: 11pt; font-weight: 700; color: #000; margin: 18px 0 6px; }
+    p { line-height: 1.75; margin-bottom: 12px; }
+    ul, ol { margin: 8px 0 14px 22px; line-height: 1.85; }
+    li { margin-bottom: 5px; }
+    .exec-summary { background: #F2FAF0; border-left: 4px solid #71BF44; padding: 16px 20px; margin: 16px 0 28px; border-radius: 2px; }
+    .exec-summary p { margin-bottom: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 10.5pt; }
+    thead tr { background: #E1E1E1; }
+    thead th { text-align: left; padding: 9px 12px; font-weight: 700; font-size: 10pt; }
+    tbody tr:nth-child(even) { background: #F2FAF0; }
+    tbody tr:nth-child(odd) { background: #fff; }
+    tbody td { padding: 8px 12px; border-bottom: 1px solid #D0E8C5; }
+    .recommendation { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+    .rec-number { background: #71BF44; color: #fff; font-weight: 700; min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10pt; margin-top: 1px; }
+    .rec-content strong { display: block; margin-bottom: 3px; }
+    .divider { height: 1px; background: #D0E8C5; margin: 28px 0; }
+    .appendix-label { font-size: 10pt; font-weight: 700; color: #71BF44; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .footer { position: absolute; bottom: 1.2cm; left: 2.5cm; right: 2.5cm; display: flex; justify-content: space-between; font-size: 8pt; color: #aaa; border-top: 1px solid #D0E8C5; padding-top: 6px; }
+  </style>
+</head>
+<body>
+<!-- MELD DOWNLOAD BAR -->
+<div id="meld-download-bar" style="
+  position: sticky; top: 0; z-index: 9999;
+  background: #71BF44; color: #ffffff;
+  font-family: 'Quicksand', Calibri, sans-serif;
+  font-size: 10pt; font-weight: 600;
+  display: flex; align-items: center;
+  gap: 12px; padding: 8px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+">
+  <a href="https://meldstrategies.github.io/meld-reports/" onclick="if(window.history.length>1){window.history.back();return false;}" target="_top" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;display:flex;align-items:center;gap:6px;">🏠 Reports Home</a>
+  <div style="flex:1;"></div>
+  <span style="opacity: 0.9; font-weight: 400;">Download this report:</span>
+  <a href="https://docs.google.com/document/d/11ne7hC3uMLLuKYScQNGgOOLsANnLd3Lb2LAIXOu_lok/edit" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">📄 HTML</a>
+  <a href="#" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">⬇ PDF</a>
+</div>
+<!-- COVER -->
+<div class="page cover">
+  <div class="cover-header">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATwAAAB9CAYAAAA/dt97AAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA9GVYSWZNTQAqAAAACAAHARIAAwAAAAEAAQAAARoABQAAAAEAAABiARsABQAAAAEAAABqASgAAwAAAAEAAgAAATEAAgAAACQAAAByATIAAgAAABQAAACWh2kABAAAAAEAAACqAAAAAAAAAEgAAAABAAAASAAAAAFBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKQAyMDE2OjAyOjAzIDEwOjEwOjQ1AAAEkAQAAgAAABQAAADgoAEAAwAAAAEAAQAAoAIABAAAAAEAAAE8oAMABAAAAAEAAAB9AAAAADIwMTY6MDE6MTEgMDk6NTU6MTEAqofrGQAAAAlwSFlzAAALEwAACxMBAJqcGAAACI1pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDYuMC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iCiAgICAgICAgICAgIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyI+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+NjU1MzU8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjMzOTwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4xNDI8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3BuZzwvZGM6Zm9ybWF0PgogICAgICAgICA8eG1wTU06SGlzdG9yeT4KICAgICAgICAgICAgPHJkZjpTZXE+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4+MjAxNi0wMS0xMVQwOTo1NToxMSsxMTowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDo0YmFmMDFhMC1iZmU4LTRjNjUtOWZiZS1mYTFhMjZjYmYwYjY8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+Y3JlYXRlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgPC9yZGY6U2VxPgogICAgICAgICA8L3htcE1NOkhpc3Rvcnk+CiAgICAgICAgIDx4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ+eG1wLmRpZDo0YmFmMDFhMC1iZmU4LTRjNjUtOWZiZS1mYTFhMjZjYmYwYjY8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPHht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" alt="Meld Strategies" />
+  </div>
+  <div class="cover-title">Smart Building Technology Assessment</div>
+  <div class="cover-subtitle">Leighton Properties — 200 George Street, Sydney</div>
+  <div class="cover-meta">
+    Prepared for: Bruce Duyshart<br>
+    Date: 6 April 2026<br>
+    Prepared by Meld Strategies
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="page" style="padding-bottom:3.5cm;">
+  <h1>Executive Summary</h1>
+  <div class="exec-summary">
+    <p>This Smart Building Technology Assessment evaluates the current and planned building technology systems at 200 George Street, Sydney, against contemporary best-practice benchmarks for commercial office assets. The property demonstrates strong foundational infrastructure but has identifiable gaps in system integration, occupant experience platforms, and sustainability data reporting. Meld Strategies recommends a prioritised technology uplift program across three workstreams — integration, occupant experience, and ESG reporting — to be delivered over a 24-month period aligned with the upcoming base building refurbishment.</p>
+  </div>
+
+  <h2>Background &amp; Context</h2>
+  <p>Leighton Properties engaged Meld Strategies in February 2026 to undertake an independent assessment of the building technology ecosystem at 200 George Street ahead of a planned base building refurbishment program. The assessment scope included review of existing BMS, access control, AV, networking, and tenant amenity systems, alongside stakeholder interviews with the building management team and two anchor tenants.</p>
+
+  <div class="divider"></div>
+  <h2>Findings &amp; Analysis</h2>
+
+  <h3>System Inventory &amp; Integration Status</h3>
+  <p>The building currently operates 11 distinct technology systems across mechanical, electrical, security, and tenant amenity domains. Fewer than 30% of these systems share data via an integration layer, limiting the ability to correlate operational data and create unified occupant experiences.</p>
+
+  <table>
+    <thead><tr><th>System</th><th>Vendor</th><th>Age (yrs)</th><th>Integration Status</th><th>Condition</th></tr></thead>
+    <tbody>
+      <tr><td>Building Management System (BMS)</td><td>Siemens Desigo CC</td><td>6</td><td>Standalone</td><td>Good</td></tr>
+      <tr><td>Access Control</td><td>Gallagher C8000</td><td>4</td><td>Partial (HR feed)</td><td>Good</td></tr>
+      <tr><td>Visitor Management</td><td>Sine Pro</td><td>2</td><td>Standalone</td><td>Good</td></tr>
+      <tr><td>Car Park Management</td><td>Skidata</td><td>9</td><td>Standalone</td><td>Fair</td></tr>
+      <tr><td>Tenant App</td><td>None deployed</td><td>—</td><td>—</td><td>Gap</td></tr>
+      <tr><td>Energy Metering</td><td>Watts On</td><td>3</td><td>Standalone</td><td>Good</td></tr>
+      <tr><td>Network Infrastructure</td><td>Cisco Meraki</td><td>2</td><td>Partial (dashboard)</td><td>Excellent</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Key Observations</h3>
+  <ul>
+    <li>No smart building integration platform (IoT/API middleware) is currently deployed, preventing cross-system data flows and unified analytics.</li>
+    <li>The absence of a tenant experience application places the building behind peer assets in the Sydney CBD for occupant amenity and engagement.</li>
+    <li>Energy metering data is collected but not yet fed into a centralised ESG reporting platform, creating manual reconciliation effort for NABERS compliance.</li>
+    <li>The Gallagher access control system is well-positioned for integration with a future tenant app and visitor management workflow.</li>
+    <li>Car park management system is approaching end of viable life and should be considered for replacement within the refurbishment program.</li>
+  </ul>
+
+  <div class="divider"></div>
+  <h2>Recommendations &amp; Next Steps</h2>
+
+  <div class="recommendation">
+    <div class="rec-number">1</div>
+    <div class="rec-content"><strong>Deploy a Smart Building Integration Platform</strong>Procure and implement an IoT/API middleware layer (e.g. Willow, Mapped, or Johnson Controls OpenBlue) to connect BMS, access control, energy metering, and future tenant systems under a unified data model.</div>
+  </div>
+  <div class="recommendation">
+    <div class="rec-number">2</div>
+    <div class="rec-content"><strong>Launch a Tenant Experience Application</strong>Select and deploy a tenant app platform (e.g. HqO, Equiem, or Building Stack) integrated with access control and visitor management to improve occupant NPS and support lease renewal outcomes.</div>
+  </div>
+  <div class="recommendation">
+    <div class="rec-number">3</div>
+    <div class="rec-content"><strong>Implement ESG Data Reporting Pipeline</strong>Connect energy metering, water, and waste data to a sustainability reporting platform (e.g. Envizi or Measurabl) to automate NABERS data collection and reduce manual reporting effort.</div>
+  </div>
+  <div class="recommendation">
+    <div class="rec-number">4</div>
+    <div class="rec-content"><strong>Replace End-of-Life Car Park System</strong>Include Skidata replacement in the refurbishment program scope, specifying integration capability with the chosen tenant app for seamless parking access and booking.</div>
+  </div>
+
+  <div class="divider"></div>
+  <h2>Appendices</h2>
+  <div class="appendix-label">Appendix A</div>
+  <p>Stakeholder Interview Notes — building management team and anchor tenant representatives, February 2026.</p>
+  <div class="appendix-label">Appendix B</div>
+  <p>Technology Benchmarking Matrix — comparison of 200 George Street system maturity against five comparable Sydney CBD assets.</p>
+  <div class="appendix-label">Appendix C</div>
+  <p>Indicative Cost Estimates — capital and operating cost ranges for each recommended workstream.</p>
+
+  <div class="footer">
+    <span>Meld Strategies — Confidential</span><span>2</span>
+  </div>
+</div>
+</body>
+</html>
