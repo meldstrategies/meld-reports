@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VMS Comparison: Nx Witness vs Genetec Security Center</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+  body { font-family: 'Quicksand', Calibri, sans-serif; color: #000000; font-size: 11pt; line-height: 1.5; max-width: 900px; margin: 0 auto; padding: 0 30px 30px 30px; }
+  h1 { color: #76b82a; font-size: 26pt; font-weight: 700; text-align: center; margin: 10px 0 6px 0; }
+  h2 { color: #76b82a; font-size: 16pt; font-weight: 700; margin-top: 24px; margin-bottom: 8px; border-bottom: 1px solid #D0E8C5; padding-bottom: 4px; }
+  h3 { color: #000000; font-size: 12pt; font-weight: 700; margin-top: 16px; margin-bottom: 6px; }
+  .cover { padding: 20px 0 30px 0; text-align: center; margin-bottom: 20px; }
+  @media print { .cover { page-break-after: always; } #meld-download-bar { display: none !important; } }
+  .subtitle { font-size: 14pt; font-weight: 700; color: #555555; margin-bottom: 18px; }
+  .meta { font-size: 10pt; color: #888888; line-height: 1.8; }
+  .exec { background-color: #F2FAF0; border-left: 4px solid #76b82a; padding: 14px 18px; margin: 16px 0; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 10pt; }
+  th { background-color: #E1E1E1; color: #000000; text-align: left; padding: 8px 10px; border: 1px solid #999; font-weight: 700; }
+  td { padding: 8px 10px; border: 1px solid #CCCCCC; vertical-align: top; }
+  tr:nth-child(even) td { background-color: #F2FAF0; }
+  ul, ol { margin: 6px 0 12px 22px; }
+  li { margin-bottom: 4px; }
+  .caveat { font-size: 9pt; color: #666666; font-style: italic; margin-top: 6px; }
+  .total { font-weight: 700; background-color: #D0E8C5 !important; }
+  footer { font-size: 9pt; color: #888; text-align: center; margin-top: 40px; border-top: 1px solid #D0E8C5; padding-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- MELD DOWNLOAD BAR -->
+<div id="meld-download-bar" style="
+  position: sticky; top: 0; z-index: 9999;
+  background: #76b82a; color: #ffffff;
+  font-family: 'Quicksand', Calibri, sans-serif;
+  font-size: 10pt; font-weight: 600;
+  display: flex; align-items: center;
+  gap: 12px; padding: 8px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+">
+  <a href="https://meldstrategies.github.io/meld-reports/" onclick="if(window.history.length>1){window.history.back();return false;}" target="_top" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;display:flex;align-items:center;gap:6px;">🏠 Reports Home</a>
+  <div style="flex:1;"></div>
+  <span style="opacity: 0.9; font-weight: 400;">Download this report:</span>
+  <a href="https://docs.google.com/document/d/1yB-jWRyVYJLNQ-Kz4DaShqOjkXxwLnPMfvcMQH8RZdY/edit?usp=drivesdk" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">📄 Doc</a>
+  <a href="https://docs.google.com/document/d/1yB-jWRyVYJLNQ-Kz4DaShqOjkXxwLnPMfvcMQH8RZdY/export?format=pdf" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.5);border-radius:5px;padding:5px 14px;font-weight:700;">⬇ PDF</a>
+</div>
+
+<div class="cover">
+  <h1>VMS Platform Comparison</h1>
+  <div class="subtitle">Nx Witness vs Genetec Security Center &mdash; 197 Camera Site</div>
+  <div class="meta">
+    Prepared by: Meld Strategies<br>
+    Author: Bruce Duyshart, Founder &amp; Principal<br>
+    Date: 30 April 2026<br>
+    Document type: Research Report
+  </div>
+</div>
+
+<h2>Executive Summary</h2>
+<div class="exec">
+This report compares two leading Video Management Systems (VMS) &mdash; <strong>Nx Witness</strong> by Network Optix and <strong>Genetec Security Center (Omnicast)</strong> &mdash; for a 197-camera deployment in the Australian market. Nx Witness is positioned as a lightweight, cost-efficient platform with a once-off perpetual licensing model and strong open-API extensibility. Genetec is positioned as an enterprise-grade unified security platform with deep federation, mapping, access-control, and analytics integration, available as either perpetual on-premise or SaaS.
+<br><br>
+For a 197-camera site, indicative total Year-1 spend is approximately <strong>AUD $80,000&ndash;$110,000</strong> for Nx Witness Professional and approximately <strong>AUD $200,000&ndash;$280,000</strong> for Genetec Security Center Pro/Enterprise. Genetec carries a 2&ndash;3&times; cost premium that is typically only justified where federation across multiple sites, integrated access control (Synergis), or advanced operational workflows are required. Nx Witness is the recommended choice for single-site or simple multi-site deployments where total cost of ownership and ease of administration are priorities.
+</div>
+
+<h2>1. Background &amp; Scope</h2>
+<p>Meld Strategies has been asked to provide an indicative comparison between two CCTV VMS platforms for a single-site deployment of 197 IP cameras. The intent is to inform early-stage platform selection, not to replace a vendor-supplied quotation. All pricing is indicative AUD ex-GST and based on publicly available reseller pricing and industry-standard SMA/SaaS models as at April 2026.</p>
+
+<p><strong>Assumed deployment characteristics:</strong></p>
+<ul>
+  <li>197 IP cameras (mix of 2MP and 4MP, ONVIF Profile S/T compliant)</li>
+  <li>Single site, single management domain</li>
+  <li>30-day continuous recording at 8 fps with H.265 compression</li>
+  <li>Estimated raw storage requirement: approximately 90&ndash;120 TB usable</li>
+  <li>2&ndash;4 simultaneous operator workstations</li>
+  <li>No integrated access control (CCTV-only) at this stage</li>
+</ul>
+
+<h2>2. Platform Overview</h2>
+
+<h3>2.1 Nx Witness (Network Optix)</h3>
+<p>Nx Witness is a Russian-origin (now US-headquartered) VMS released in 2014, built on the Nx Meta platform. It is widely distributed in Australia through resellers including Ness Corporation, Security Wholesalers, ISCS, and SecurityAustralia. The platform is offered in <strong>Professional</strong>, <strong>Enterprise</strong>, and <strong>Global</strong> editions, plus an <strong>Nx Cloud</strong> SaaS layer for remote access and federation.</p>
+
+<h3>2.2 Genetec Security Center / Omnicast</h3>
+<p>Genetec is a Canadian unified security platform vendor founded in 1997. <strong>Security Center</strong> is the unified platform; <strong>Omnicast</strong> is the video module. The platform is available in <strong>Standard</strong>, <strong>Professional</strong>, and <strong>Enterprise</strong> editions for on-premise deployment, plus <strong>Security Center SaaS</strong> for cloud-managed deployments. <strong>Streamvault</strong> appliances (SV-1000E, SV-2000E, SV-4000E) are pre-configured turnkey servers. In Australia, Genetec is delivered through certified integrators including JD Security, Thinkbox Solutions, and Virgo Security.</p>
+
+<h2>3. Feature Comparison</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:32%">Feature / Capability</th>
+      <th style="width:34%">Nx Witness (Professional / Enterprise)</th>
+      <th style="width:34%">Genetec Security Center (Pro / Enterprise)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Architecture</strong></td><td>Distributed peer-to-peer; any server can act as primary; merge sites into a single system</td><td>Client-server with dedicated Directory and Archiver roles; redundancy via failover Directory</td></tr>
+    <tr><td><strong>Camera support</strong></td><td>~10,000+ cameras via ONVIF Profile S/T and native SDKs; ~99% of IP cameras supported out-of-box</td><td>~9,000+ devices, deep integrations with Axis, Bosch, Hanwha, Avigilon; ONVIF Profile S/T</td></tr>
+    <tr><td><strong>Maximum cameras per server</strong></td><td>Up to 256 per server (hardware-dependent)</td><td>Typically 200&ndash;500 per Archiver depending on bitrate</td></tr>
+    <tr><td><strong>Maximum scale</strong></td><td>Effectively unlimited via federated multi-site (Nx Cloud / Global)</td><td>Effectively unlimited; designed for city-scale (10,000+ cameras) deployments</td></tr>
+    <tr><td><strong>Operating system</strong></td><td>Windows, Linux (Ubuntu), ARM (edge)</td><td>Windows Server only</td></tr>
+    <tr><td><strong>Codec support</strong></td><td>H.264, H.265, MJPEG; native multi-streaming</td><td>H.264, H.265, MJPEG; multi-streaming and adaptive streaming</td></tr>
+    <tr><td><strong>Mobile / web client</strong></td><td>Native iOS / Android apps; full-featured HTML5 web client; Cloud-relay remote access</td><td>Native iOS / Android (Genetec Mobile); Web Client (limited features); Genetec Mission Control</td></tr>
+    <tr><td><strong>Mapping / GIS</strong></td><td>Nx Maps (image-based and GIS); plug-in architecture</td><td>Native GIS map engine; Esri ArcGIS integration; dynamic federation overlays</td></tr>
+    <tr><td><strong>Federation / multi-site</strong></td><td>System merge + Nx Cloud federation; lightweight</td><td>Federation is a core strength &mdash; aggregate independent SC systems; granular role-based delegation</td></tr>
+    <tr><td><strong>Access control integration</strong></td><td>Via 3rd-party plugins (e.g. Inner Range, Gallagher, ICT) over REST API</td><td>Native via Genetec Synergis (unified platform) &mdash; key differentiator</td></tr>
+    <tr><td><strong>ALPR / LPR</strong></td><td>3rd-party plug-ins (Vaxtor, Survision)</td><td>Native via Genetec AutoVu</td></tr>
+    <tr><td><strong>Intercom / audio</strong></td><td>2-way audio over ONVIF; Zenitel and 2N integrations</td><td>Native intercom &amp; SIP; broad 2N, Zenitel, Commend support</td></tr>
+    <tr><td><strong>Video analytics</strong></td><td>Edge analytics via camera SDK; native object detection (Enterprise); 3rd-party (VisionLabs, BriefCam-style add-ons)</td><td>KiwiVision built-in (people counting, occupancy, intrusion); Genetec Cloudrunner; rich 3rd-party ecosystem</td></tr>
+    <tr><td><strong>AI / metadata search</strong></td><td>Object search (Enterprise); REST + AI Manager (newer release)</td><td>Forensic Search, Privacy Protector&trade;, Cloudrunner AI</td></tr>
+    <tr><td><strong>Cybersecurity posture</strong></td><td>Signed binaries, encrypted archive option, RBAC, audit log; ASD/IRAP not formally certified</td><td>FIPS 140-2, SOC 2 Type II, Common Criteria, hardened Streamvault appliances; preferred by tier-1 government clients</td></tr>
+    <tr><td><strong>Open API / SDK</strong></td><td>Comprehensive REST API; plugin SDK; Cloud API</td><td>SDK + Web SDK; richer but steeper learning curve</td></tr>
+    <tr><td><strong>Health monitoring</strong></td><td>System health dashboard; Nx Cloud telemetry</td><td>System Availability Monitor (SAM); detailed device health</td></tr>
+    <tr><td><strong>Bookmark / evidence export</strong></td><td>Bookmarks, multi-camera export with watermark and signature</td><td>Bookmarks, evidence vault, digital signatures, chain-of-custody</td></tr>
+    <tr><td><strong>Licensing model</strong></td><td>Once-off perpetual per camera; free lifetime version updates</td><td>Perpetual per-camera + annual SMA, OR SaaS subscription per camera per month</td></tr>
+    <tr><td><strong>Australian standards alignment</strong></td><td>Suitable for AS 4806 commercial CCTV; meets typical NABERS / Green Star sustainability documentation</td><td>Stronger fit for Protective Security Policy Framework (PSPF) and ASD ISM-aligned environments</td></tr>
+  </tbody>
+</table>
+
+<h2>4. Pricing Models &mdash; Structure</h2>
+
+<h3>4.1 Nx Witness Pricing Model</h3>
+<ul>
+  <li><strong>Per-camera perpetual licence</strong> &mdash; one-off purchase, no expiry. Tiers: Professional (~AUD $195/camera ex-GST, retail), Enterprise (~AUD $295/camera, advanced analytics &amp; AI features), Global (~AUD $395/camera, multi-site federation).</li>
+  <li><strong>Free version updates</strong> for the life of the licence &mdash; no mandatory annual renewal.</li>
+  <li><strong>Optional Nx Cloud subscription</strong> for remote access, federation, and cloud relay (typically free for ≤5 users, paid tiers for enterprise).</li>
+  <li><strong>No server licence</strong> &mdash; servers are unlimited; only cameras are counted.</li>
+  <li><strong>Hardware</strong> &mdash; runs on commodity Windows/Linux servers or any compatible appliance; no proprietary hardware required.</li>
+  <li><strong>Reseller margin</strong> &mdash; typical 15&ndash;25% discount off list to integrators, sometimes passed on.</li>
+</ul>
+<p class="caveat">Indicative pricing referenced from SecurityAustralia and ISCS public retail listings (April 2026); actual project pricing depends on volume, reseller and bundle.</p>
+
+<h3>4.2 Genetec Pricing Model</h3>
+<ul>
+  <li><strong>Per-camera connection licence</strong> &mdash; perpetual, requires an active SMA (Software Maintenance Agreement) for updates. Indicative ex-GST list:
+    <ul>
+      <li>Standard: ~AUD $200&ndash;$250/camera</li>
+      <li>Professional: ~AUD $400&ndash;$500/camera</li>
+      <li>Enterprise: ~AUD $600&ndash;$750/camera</li>
+    </ul>
+  </li>
+  <li><strong>Base Directory licence</strong> &mdash; one-off ~AUD $3,500&ndash;$6,000 plus optional failover.</li>
+  <li><strong>Annual SMA</strong> &mdash; typically 18&ndash;22% of licence value per year for updates and support.</li>
+  <li><strong>Streamvault appliances</strong> &mdash; pre-loaded servers from ~AUD $9,000 (SV-1000E, ~50 cameras) to ~AUD $25,000+ (SV-4000E, 300+ cameras).</li>
+  <li><strong>Security Center SaaS</strong> &mdash; subscription per camera per month (~AUD $35&ndash;$55/camera/month indicative); Streamvault Edge appliance still required onsite for storage. No perpetual licence; ongoing OPEX.</li>
+  <li><strong>Certified integrator delivery</strong> &mdash; only Genetec-certified integrators may deploy; commissioning and design services typically 15&ndash;25% of software value.</li>
+</ul>
+<p class="caveat">Genetec does not publish AUD list pricing; figures above are derived from publicly disclosed US/EU pricing benchmarks (B&amp;H, Insight) plus typical AU integrator margin and currency conversion. Actual quotes from JD Security, Thinkbox Solutions, or other certified integrators will vary.</p>
+
+<h2>5. Indicative Pricing &mdash; 197 Camera Deployment</h2>
+
+<h3>5.1 Nx Witness &mdash; Professional Edition (recommended)</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Qty / basis</th><th>Unit (AUD ex-GST)</th><th>Subtotal (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Nx Witness Professional camera licence</td><td>197 cameras</td><td>$195</td><td>$38,415</td></tr>
+    <tr><td>Recording servers (commodity 2U, RAID-6, 32 TB usable)</td><td>4 servers @ ~50 cams each</td><td>$8,500</td><td>$34,000</td></tr>
+    <tr><td>Operator workstation (mid-spec)</td><td>2</td><td>$3,500</td><td>$7,000</td></tr>
+    <tr><td>Nx Cloud (basic tier, multi-site/remote)</td><td>1 yr</td><td>Included</td><td>$0</td></tr>
+    <tr><td>Commissioning / configuration (estimate)</td><td>~120 hours</td><td>$180/hr</td><td>$21,600</td></tr>
+    <tr class="total"><td colspan="3">Indicative total Year 1 (CapEx)</td><td>~$101,015</td></tr>
+    <tr><td>Recurring Year 2+ (optional support)</td><td>~10% of licence</td><td>&ndash;</td><td>~$3,800/yr</td></tr>
+  </tbody>
+</table>
+<p class="caveat">Storage sized for 30-day retention at 4 Mbps average (mixed 2/4 MP, H.265, 8 fps). Hardware costs use mid-market AU server pricing.</p>
+
+<h3>5.2 Nx Witness &mdash; Enterprise Edition (analytics-rich variant)</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Qty / basis</th><th>Unit (AUD ex-GST)</th><th>Subtotal (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Nx Witness Enterprise camera licence</td><td>197 cameras</td><td>$295</td><td>$58,115</td></tr>
+    <tr><td>Servers / workstations (as 5.1)</td><td>&ndash;</td><td>&ndash;</td><td>$41,000</td></tr>
+    <tr><td>Commissioning</td><td>~140 hours</td><td>$180/hr</td><td>$25,200</td></tr>
+    <tr class="total"><td colspan="3">Indicative total Year 1 (CapEx)</td><td>~$124,315</td></tr>
+  </tbody>
+</table>
+
+<h3>5.3 Genetec Security Center &mdash; Omnicast Professional (perpetual)</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Qty / basis</th><th>Unit (AUD ex-GST)</th><th>Subtotal (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Security Center Directory base licence</td><td>1</td><td>$4,500</td><td>$4,500</td></tr>
+    <tr><td>Omnicast Professional camera connection</td><td>197</td><td>$450</td><td>$88,650</td></tr>
+    <tr><td>Streamvault SV-2000E appliance</td><td>3 (~70 cams each)</td><td>$18,000</td><td>$54,000</td></tr>
+    <tr><td>Streamvault Workstation</td><td>2</td><td>$6,500</td><td>$13,000</td></tr>
+    <tr><td>SMA (Software Maintenance Agreement) Year 1</td><td>20% of software</td><td>&ndash;</td><td>$18,630</td></tr>
+    <tr><td>Certified integrator commissioning</td><td>20% of software</td><td>&ndash;</td><td>$18,630</td></tr>
+    <tr class="total"><td colspan="3">Indicative total Year 1 (CapEx + Y1 SMA)</td><td>~$197,410</td></tr>
+    <tr><td>Recurring SMA Year 2+</td><td>20% of licence</td><td>&ndash;</td><td>~$18,630/yr</td></tr>
+  </tbody>
+</table>
+
+<h3>5.4 Genetec Security Center &mdash; Omnicast Enterprise (perpetual)</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Qty / basis</th><th>Unit (AUD ex-GST)</th><th>Subtotal (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Security Center Directory base + failover</td><td>1</td><td>$8,000</td><td>$8,000</td></tr>
+    <tr><td>Omnicast Enterprise camera connection</td><td>197</td><td>$675</td><td>$132,975</td></tr>
+    <tr><td>Streamvault SV-4000E appliance</td><td>2</td><td>$26,000</td><td>$52,000</td></tr>
+    <tr><td>Workstations</td><td>2</td><td>$6,500</td><td>$13,000</td></tr>
+    <tr><td>SMA Year 1 (20%)</td><td>&ndash;</td><td>&ndash;</td><td>$28,195</td></tr>
+    <tr><td>Commissioning (20%)</td><td>&ndash;</td><td>&ndash;</td><td>$28,195</td></tr>
+    <tr class="total"><td colspan="3">Indicative total Year 1 (CapEx + Y1 SMA)</td><td>~$262,365</td></tr>
+    <tr><td>Recurring SMA Year 2+</td><td>20% of licence</td><td>&ndash;</td><td>~$28,195/yr</td></tr>
+  </tbody>
+</table>
+
+<h3>5.5 Genetec Security Center SaaS (subscription, OPEX)</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Qty / basis</th><th>Unit (AUD ex-GST)</th><th>Annual (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SC SaaS camera subscription (Pro tier)</td><td>197 cams &times; 12 mths</td><td>$45/cam/mth</td><td>$106,380/yr</td></tr>
+    <tr><td>Streamvault Edge appliance (one-off)</td><td>3</td><td>$14,000</td><td>$42,000 (Y1 only)</td></tr>
+    <tr><td>Workstations &amp; commissioning</td><td>&ndash;</td><td>&ndash;</td><td>$30,000</td></tr>
+    <tr class="total"><td colspan="3">Indicative total Year 1</td><td>~$178,380</td></tr>
+    <tr><td>Recurring Year 2+</td><td>Subscription only</td><td>&ndash;</td><td>~$106,380/yr</td></tr>
+  </tbody>
+</table>
+
+<h2>6. Five-Year Total Cost of Ownership (Indicative)</h2>
+<table>
+  <thead>
+    <tr><th>Option</th><th>Year 1 (AUD)</th><th>Years 2&ndash;5 (AUD)</th><th>5-Year TCO (AUD)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Nx Witness Professional</td><td>$101,015</td><td>$15,200 (4 &times; $3,800)</td><td><strong>~$116,215</strong></td></tr>
+    <tr><td>Nx Witness Enterprise</td><td>$124,315</td><td>$23,260 (4 &times; ~$5,815)</td><td><strong>~$147,575</strong></td></tr>
+    <tr><td>Genetec Omnicast Professional (perpetual)</td><td>$197,410</td><td>$74,520 (4 &times; $18,630)</td><td><strong>~$271,930</strong></td></tr>
+    <tr><td>Genetec Omnicast Enterprise (perpetual)</td><td>$262,365</td><td>$112,780 (4 &times; $28,195)</td><td><strong>~$375,145</strong></td></tr>
+    <tr><td>Genetec SC SaaS (Pro)</td><td>$178,380</td><td>$425,520 (4 &times; $106,380)</td><td><strong>~$603,900</strong></td></tr>
+  </tbody>
+</table>
+<p class="caveat">All figures exclude GST, cabling, network infrastructure, cameras, and storage upgrades over the 5-year period. SaaS option becomes the most expensive over the long term despite the lower up-front cost &mdash; typical of subscription models at this scale.</p>
+
+<h2>7. Discussion &amp; Recommendation</h2>
+
+<h3>7.1 Where Nx Witness wins</h3>
+<ul>
+  <li>Significantly lower TCO &mdash; ~40&ndash;55% cheaper than equivalent Genetec tier on a 5-year basis.</li>
+  <li>No mandatory annual maintenance cost &mdash; predictable budget; updates remain free.</li>
+  <li>Lightweight architecture, runs on commodity hardware (Windows or Linux).</li>
+  <li>Faster to deploy and configure; less specialist training required.</li>
+  <li>Strong fit for commercial buildings, industrial, retail, and education sectors with single-site or simple multi-site needs.</li>
+</ul>
+
+<h3>7.2 Where Genetec wins</h3>
+<ul>
+  <li>Native federation across many independent systems &mdash; the gold standard for city-scale, transport, port, and government deployments.</li>
+  <li>Tightly integrated unified platform: Omnicast (video) + Synergis (access) + AutoVu (LPR) + Mission Control (operations) under one client.</li>
+  <li>Superior cybersecurity posture (FIPS 140-2, hardened Streamvault, regular ASD/IRAP-relevant validation).</li>
+  <li>Mature analytics ecosystem (KiwiVision, Cloudrunner, AutoVu) with deep Australian integrator support.</li>
+  <li>Better suited to environments with strict compliance, complex operational workflows, or future need for unified access control.</li>
+</ul>
+
+<h3>7.3 Recommendation for a 197-camera site</h3>
+<ol>
+  <li><strong>Default position:</strong> Select <strong>Nx Witness Professional</strong> &mdash; best value, sufficient feature depth for almost all single-site CCTV use cases at this scale, lowest TCO over 5 years.</li>
+  <li><strong>Step up to Nx Witness Enterprise</strong> if native object/forensic search and AI-driven analytics are core requirements.</li>
+  <li><strong>Choose Genetec Omnicast Professional</strong> only if any of the following apply:
+    <ul>
+      <li>The site is part of a federated multi-site or city-wide system (e.g. precinct, transport, government campus).</li>
+      <li>Integrated access control via Synergis is required now or within 3 years.</li>
+      <li>Cybersecurity certification (PSPF, IRAP) is a hard requirement.</li>
+      <li>The client has an existing Genetec estate and standardisation is mandated.</li>
+    </ul>
+  </li>
+  <li><strong>Avoid Genetec SC SaaS</strong> at the 197-camera scale unless the client has an explicit OPEX preference &mdash; on-premise perpetual is ~50% cheaper over 5 years.</li>
+</ol>
+
+<h2>8. Risks, Caveats &amp; Next Steps</h2>
+<ul>
+  <li>All pricing in this report is indicative and based on public retailer listings, published US/EU price benchmarks, and standard AU integrator margins. <strong>It must not be used as a tendered or contracted price.</strong></li>
+  <li>Genetec does not publish AUD pricing &mdash; firm quotes must be obtained from a certified Australian integrator (e.g. JD Security, Thinkbox Solutions, Virgo Security).</li>
+  <li>Storage sizing assumes 30-day retention at 4 Mbps blended bitrate; longer retention or higher resolutions will materially shift hardware cost for both options.</li>
+  <li>Cybersecurity, NCC compliance and any AS 4806 (Closed Circuit Television) requirements should be re-confirmed against the specific project brief before final selection.</li>
+  <li>Recommended next step: issue a short-form RFI to two Nx Witness resellers and two Genetec certified integrators with the 197-camera scope, retention requirement, and any access-control/analytics requirements to obtain firm AUD quotes.</li>
+</ul>
+
+<footer>
+Meld Strategies &middot; Smart Building Consultancy &middot; Sydney NSW &middot; meldstrategies.com
+</footer>
+
+</body>
+</html>
